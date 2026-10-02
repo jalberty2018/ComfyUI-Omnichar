@@ -254,3 +254,32 @@ def test_decode_works_with_no_clip_so_no_checkpoint_is_needed(pack):
     assert cond is None
     assert refs.shape[0] == 2 and sheet.shape[0] == 1
     assert prompt.startswith("Images 1 and 2 show Ada,")
+
+
+def test_encode_takes_several_images_per_role(pack):
+    """A ComfyUI input takes one link, so each role needs more than one slot."""
+    import torch
+
+    module, _ = pack
+    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+        "Bo",
+        "A tall man.",
+        512,
+        face=torch.rand(1, 96, 64, 3),
+        face_2=torch.rand(1, 96, 64, 3),
+        face_3=torch.rand(1, 96, 64, 3),
+        body=torch.rand(1, 72, 128, 3),
+        cloths_2=torch.rand(1, 64, 64, 3),
+    )
+    # Slots and batches both contribute, and roles stay grouped face then body then cloth.
+    assert [r.role for r in char.get_references()] == ["face", "face", "face", "body", "cloth"]
+
+
+def test_a_batch_in_one_slot_still_counts_as_several_references(pack):
+    import torch
+
+    module, _ = pack
+    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+        "Bo", "A tall man.", 512, face=torch.rand(4, 96, 64, 3)
+    )
+    assert [r.role for r in char.get_references()] == ["face"] * 4

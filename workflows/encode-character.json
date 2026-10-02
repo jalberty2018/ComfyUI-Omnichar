@@ -87,7 +87,7 @@
       ],
       "size": [
         360,
-        260
+        380
       ],
       "order": 2,
       "mode": 0,
@@ -98,12 +98,42 @@
           "link": 1
         },
         {
+          "name": "face_2",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "face_3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
           "name": "body",
           "type": "IMAGE",
           "link": 2
         },
         {
+          "name": "body_2",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "body_3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
           "name": "cloths",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "cloths_2",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "cloths_3",
           "type": "IMAGE",
           "link": null
         }

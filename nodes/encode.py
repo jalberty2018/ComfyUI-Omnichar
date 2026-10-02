@@ -18,6 +18,29 @@ from omnichar_sdk import (
 from . import folders
 from .common import CATEGORY, CHARACTER_INPUT, from_image
 
+#: Several slots per role, because a ComfyUI input takes one link. Each still accepts a batch, so
+#: three Load Image nodes or one batch of three both give three references.
+SLOTS_PER_ROLE = 3
+
+_ROLE_HINTS = {
+    "face": "Face references. Identity comes from these.",
+    "body": "Full-body references, for build and proportions.",
+    "cloths": "Wardrobe references.",
+}
+_ROLE_SLOTS = [
+    (slot if n == 1 else f"{slot}_{n}", "cloth" if slot == "cloths" else slot)
+    for slot in _ROLE_HINTS
+    for n in range(1, SLOTS_PER_ROLE + 1)
+]
+
+
+def _role_inputs() -> dict[str, object]:
+    out: dict[str, object] = {}
+    for name, _role in _ROLE_SLOTS:
+        base = name.split("_")[0]
+        out[name] = ("IMAGE", {"tooltip": _ROLE_HINTS[base]})
+    return out
+
 
 class OmnicharEncodeCharacter:
     @classmethod
@@ -50,11 +73,7 @@ class OmnicharEncodeCharacter:
                     },
                 ),
             },
-            "optional": {
-                "face": ("IMAGE", {"tooltip": "Face references. Identity comes from these."}),
-                "body": ("IMAGE", {"tooltip": "Full-body references, for build and proportions."}),
-                "cloths": ("IMAGE", {"tooltip": "Wardrobe references."}),
-            },
+            "optional": _role_inputs(),
         }
 
     RETURN_TYPES = ("CHARACTER",)
@@ -66,9 +85,10 @@ class OmnicharEncodeCharacter:
         "MiniMax H3, so it applies on any model that takes references."
     )
 
-    def encode(self, name, description, resolution, face=None, body=None, cloths=None):
+    def encode(self, name, description, resolution, **images):
         pairs = []
-        for batch, role in ((face, "face"), (body, "body"), (cloths, "cloth")):
+        for slot, role in _ROLE_SLOTS:
+            batch = images.get(slot)
             if batch is None:
                 continue
             pairs.extend((image, role) for image in from_image(batch))

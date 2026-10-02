@@ -13,7 +13,7 @@ Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU,
 - **Positions Kept**: Reference order is preserved, because a prompt addresses images by number
 - **Conditioning**: Wire a CLIP to get conditioning straight out, or take the prompt as text
 - **Trained LoRA**: Applied to MODEL and CLIP when the character carries one
-- **Build Characters**: Encode face, body and wardrobe references into a new `.char`
+- **Build Characters**: Encode face, body and wardrobe references into a new `.char`, three slots each
 - **Python Library**: The reader is a standalone package with no dependencies
 
 ## Requirements
@@ -56,7 +56,7 @@ and both read the same files.
 | Load Character | `char`, `char_path` | `char` |
 | Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `sheet`, `prompt` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
-| Encode Character | `name`, `description`, `resolution`, `face`, `body`, `cloths` | `char` |
+| Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
 | Save Character | `char`, `filename`, `overwrite` | `path` |
 
 Ready-made graphs are in [`workflows/`](workflows/).
