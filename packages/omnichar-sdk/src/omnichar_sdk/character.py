@@ -217,6 +217,13 @@ class Character:
 
     # --- the facade -------------------------------------------------------------------------
 
+    def to_bytes(self) -> bytes:
+        """The whole file, for a caller that wants to write it somewhere."""
+        if self._data is not None:
+            return self._data
+        assert self._path is not None
+        return self._path.read_bytes()
+
     def get_description(self) -> str:
         """The locked character description, or an empty string when the file carries none."""
         member = str(self._manifest.text.get("path") or "")

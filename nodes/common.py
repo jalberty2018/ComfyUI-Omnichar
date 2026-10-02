@@ -25,6 +25,18 @@ def to_image(images: list[Any]) -> torch.Tensor:
     return torch.stack(frames)
 
 
+def from_image(batch: Any) -> list[Any]:
+    """A ComfyUI IMAGE batch back to Pillow images, one per frame."""
+    import numpy as np
+    from PIL import Image
+
+    out = []
+    for frame in batch:
+        array = (frame.detach().cpu().numpy() * 255.0).clip(0, 255).astype(np.uint8)
+        out.append(Image.fromarray(array, "RGB"))
+    return out
+
+
 def fail_on_change(error: CharChanged) -> CharError:
     """Fail a render whose character was replaced mid-run; retrying would use a different one."""
     return CharError(

@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: Apache-2.0
-"""The ``.char`` container, extracted from Omnichar Studio; the layout is in docs/char-format.md."""
+"""The ``.char`` container: manifest first, then refs, text, compiled payloads and scoring."""
 
 from __future__ import annotations
 
 import hashlib
 import json
+import os
 import stat
 import zipfile
 from dataclasses import dataclass, field
@@ -302,6 +303,26 @@ def read(path: Path | str) -> CharDoc:
             if not info.is_dir() and info.filename != MANIFEST_NAME
         }
     return CharDoc(manifest=manifest, members=members)
+
+
+def write(path: Path | str, doc: CharDoc) -> Path:
+    """Write atomically. The archive closes before the replace, or Windows refuses it."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    staging = target.with_name(target.name + ".part")
+    try:
+        with zipfile.ZipFile(staging, "w", zipfile.ZIP_DEFLATED) as archive:
+            # Manifest first so a reader can identify the file from the front of the stream.
+            archive.writestr(MANIFEST_NAME, dumps_manifest(doc.manifest))
+            for name in sorted(doc.members):
+                # PNGs are already compressed; deflating them again costs time and saves nothing.
+                compress = zipfile.ZIP_STORED if name.endswith(".png") else zipfile.ZIP_DEFLATED
+                archive.writestr(name, doc.members[name], compress_type=compress)
+        os.replace(staging, target)
+    except Exception:
+        staging.unlink(missing_ok=True)
+        raise
+    return target
 
 
 def refs_fingerprint(manifest: Manifest, policy: dict[str, Any]) -> str:

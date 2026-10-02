@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 import pytest
-from comfystub import FakeModel, install
+from comfystub import FakeClip, FakeModel, install
 from conftest import FIXTURES
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,7 +44,7 @@ def pack(tmp_path, monkeypatch):
 
 def test_every_node_registers_with_a_display_name(pack):
     module, _ = pack
-    assert len(module.NODE_CLASS_MAPPINGS) == 8
+    assert len(module.NODE_CLASS_MAPPINGS) == 5
     assert set(module.NODE_CLASS_MAPPINGS) == set(module.NODE_DISPLAY_NAME_MAPPINGS)
 
 
@@ -64,7 +64,7 @@ def test_the_loader_lists_and_opens_a_character(pack):
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     assert "Ada.char" in module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"].INPUT_TYPES()[
         "required"
-    ]["character"][0]
+    ]["char"][0]
     (char,) = loader.load("Ada.char")
     assert char.name == "Ada"
 
@@ -100,51 +100,6 @@ def test_char_path_inside_a_registered_directory_is_allowed(pack):
     assert char.name == "Ada"
 
 
-def test_references_batch_is_one_tensor_and_the_list_is_many(pack):
-    module, _ = pack
-    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
-    (char,) = loader.load("Ada.char")
-
-    batch, count = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferences"]().load(
-        char, "originals", "any", 0, "largest", "pad"
-    )
-    assert count == 2
-    # common_size returns (width, height); the largest by area is the 128x72 reference, so the
-    # batch is 72 high and 128 wide and the taller reference is letterboxed into it.
-    assert batch.shape == (2, 72, 128, 3)
-
-    images, n = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceList"]().load(
-        char, "originals", "any", 0
-    )
-    assert n == 2
-    assert [tuple(img.shape) for img in images] == [(1, 96, 64, 3), (1, 72, 128, 3)]
-
-
-def test_reference_at_reports_the_last_valid_index(pack):
-    module, _ = pack
-    from omnichar_sdk import CharError
-
-    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
-    (char,) = loader.load("Ada.char")
-    node = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceAt"]()
-    image, role = node.load(char, "originals", 1)
-    assert role == "body"
-    with pytest.raises(CharError) as excinfo:
-        node.load(char, "originals", 9)
-    assert "The last one is 1" in str(excinfo.value)
-
-
-def test_prompt_node_appends_the_users_text(pack):
-    module, _ = pack
-    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
-    (char,) = loader.load("Ada.char")
-    (text,) = module.NODE_CLASS_MAPPINGS["OmnicharCharacterPrompt"]().build(
-        char, "ordinal", 1, "in the rain"
-    )
-    assert text.startswith("Images 1 and 2 show Ada,")
-    assert text.endswith("in the rain")
-
-
 def test_applying_a_lora_the_model_cannot_receive_is_refused(pack):
     module, _ = pack
     from omnichar_sdk import CharError
@@ -173,16 +128,6 @@ def test_applying_a_lora_the_model_accepts_uses_the_recorded_strength(pack):
     assert model[2] == pytest.approx(0.8)
 
 
-def test_exporting_writes_into_the_loras_folder(pack):
-    module, models = pack
-    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
-    (char,) = loader.load("Ada.char")
-    name, strength = module.NODE_CLASS_MAPPINGS["OmnicharExportCharacterLoRA"]().export(char)
-    assert name == "Ada-z-image.safetensors"
-    assert (models / "loras" / name).is_file()
-    assert strength == pytest.approx(0.8)
-
-
 def test_validate_inputs_applies_the_caps(pack, tmp_path):
     module, models = pack
     from conftest import MANIFEST, build
@@ -205,3 +150,93 @@ def test_validate_inputs_rejects_a_path_outside_the_character_directories(pack):
     message = cls.VALIDATE_INPUTS("Ada.char", "/etc/passwd")
     assert message is not True
     assert "outside the character directories" in message
+
+
+def test_apply_character_gives_conditioning_references_and_a_sheet(pack):
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    clip = FakeClip()
+
+    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharApplyCharacter"]().apply(
+        char, clip, "ordinal", "in the rain"
+    )
+    assert prompt.startswith("Images 1 and 2 show Ada,")
+    assert prompt.endswith("in the rain")
+    # The prompt reaches the encoder, which is the whole reason this node takes a CLIP.
+    assert clip.seen == prompt
+    assert cond[0][0].startswith("cond:Images 1 and 2")
+    assert refs.shape[0] == 2
+    assert sheet.shape[0] == 1 and sheet.shape[3] == 3
+
+
+def test_encode_character_round_trips_through_save_and_load(pack, tmp_path):
+    import torch
+
+    module, models = pack
+    face = torch.rand(1, 96, 64, 3)
+    body = torch.rand(2, 72, 128, 3)
+
+    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+        "Bo", "A tall man with a shaved head.", 512, face=face, body=body
+    )
+    assert char.name == "Bo"
+    assert [r.role for r in char.get_references()] == ["face", "body", "body"]
+    # Compiled for both reference archs, so it applies without a rebuild.
+    assert char.get_info().ref_archs == ["flux2-klein", "minimax-h3"]
+
+    (path,) = module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]().save(char, "bo")
+    written = Path(path)
+    assert written.name == "bo.char" and written.parent == (models / "characters")
+
+    from omnichar_sdk import Character
+
+    assert Character.open(written).get_description() == "A tall man with a shaved head."
+
+
+def test_saving_refuses_to_clobber_unless_told(pack):
+    module, _ = pack
+    from omnichar_sdk import CharError
+
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    save = module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]()
+    with pytest.raises(CharError) as excinfo:
+        save.save(char, "Ada.char")
+    assert "already exists" in str(excinfo.value)
+    assert save.save(char, "Ada.char", overwrite=True)[0].endswith("Ada.char")
+
+
+def test_encode_with_no_images_says_what_to_wire(pack):
+    module, _ = pack
+    from omnichar_sdk import CharError
+
+    with pytest.raises(CharError) as excinfo:
+        module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode("X", "", 512)
+    assert "at least one reference" in str(excinfo.value)
+
+
+def test_the_shipped_workflows_match_the_nodes(pack):
+    """A workflow that names a node we no longer register is a broken download."""
+    import json
+
+    for path in sorted((ROOT / "workflows").glob("*.json")):
+        wf = json.loads(path.read_text())
+        for node in wf["nodes"]:
+            cls = module_for(pack, node["type"])
+            if cls is None:
+                continue
+            spec = cls.INPUT_TYPES()
+            widgets = [
+                k
+                for k, v in list(spec.get("required", {}).items())
+                + list(spec.get("optional", {}).items())
+                if not (isinstance(v[0], str) and v[0] in ("CHARACTER", "MODEL", "CLIP", "IMAGE"))
+            ]
+            values = node.get("widgets_values", [])
+            assert len(values) <= len(widgets), f"{path.name}: {node['type']} {values} vs {widgets}"
+
+
+def module_for(pack, node_type):
+    module, _ = pack
+    return module.NODE_CLASS_MAPPINGS.get(node_type)

@@ -1,0 +1,282 @@
+{
+  "last_node_id": 6,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "OmnicharLoadCharacter",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        330,
+        80
+      ],
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnicharLoadCharacter"
+      },
+      "widgets_values": [
+        "Ada.char",
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        330,
+        100
+      ],
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "put-your-checkpoint-here.safetensors"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "OmnicharApplyCharacter",
+      "pos": [
+        430,
+        200
+      ],
+      "size": [
+        360,
+        260
+      ],
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "link": 1
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "references",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "sheet",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            5
+          ],
+          "slot_index": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnicharApplyCharacter"
+      },
+      "widgets_values": [
+        "ordinal",
+        "standing in a rain-lit street at night",
+        "originals",
+        0,
+        "first",
+        "pad"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "PreviewImage",
+      "pos": [
+        850,
+        160
+      ],
+      "size": [
+        300,
+        250
+      ],
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [
+        850,
+        440
+      ],
+      "size": [
+        300,
+        250
+      ],
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 6,
+      "type": "PreviewAny",
+      "pos": [
+        850,
+        720
+      ],
+      "size": [
+        300,
+        120
+      ],
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      0,
+      "CHARACTER"
+    ],
+    [
+      2,
+      2,
+      1,
+      3,
+      1,
+      "CLIP"
+    ],
+    [
+      3,
+      3,
+      1,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      3,
+      2,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      3,
+      6,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Load a character, get its references, sheet and prompt",
+      "bounding": [
+        20,
+        120,
+        1150,
+        740
+      ],
+      "color": "#3f789e"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

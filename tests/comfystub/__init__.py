@@ -15,6 +15,21 @@ class FakeModel:
         self.model = types.SimpleNamespace(stems=stems)
 
 
+class FakeClip:
+    """Enough of a CLIP to prove the prompt reaches the encoder and conditioning comes back."""
+
+    def __init__(self):
+        self.cond_stage_model = types.SimpleNamespace()
+        self.seen = None
+
+    def tokenize(self, text):
+        self.seen = text
+        return {"tokens": text}
+
+    def encode_from_tokens_scheduled(self, tokens):
+        return [[f"cond:{tokens['tokens'][:40]}", {}]]
+
+
 def install(models_dir: Path, unet_stems=(), clip_stems=()):
     folder_paths = types.ModuleType("folder_paths")
     folder_paths.models_dir = str(models_dir)

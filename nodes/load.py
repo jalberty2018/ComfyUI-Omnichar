@@ -16,7 +16,7 @@ class OmnicharLoadCharacter:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "character": (
+                "char": (
                     folders.listed(),
                     {"tooltip": "A .char file from models/characters."},
                 ),
@@ -37,7 +37,7 @@ class OmnicharLoadCharacter:
         }
 
     RETURN_TYPES = (CHARACTER,)
-    RETURN_NAMES = ("character",)
+    RETURN_NAMES = ("char",)
     FUNCTION = "load"
     CATEGORY = CATEGORY
     DESCRIPTION = (
@@ -46,24 +46,24 @@ class OmnicharLoadCharacter:
     )
 
     @classmethod
-    def IS_CHANGED(cls, character, char_path=""):
+    def IS_CHANGED(cls, char, char_path=""):
         # One stat: hashing the archive costs over a second on a character carrying an adapter.
         try:
-            stat = os.stat(folders.resolve(character, char_path))
+            stat = os.stat(folders.resolve(char, char_path))
         except (CharError, OSError):
             return float("nan")
         return (stat.st_mtime_ns, stat.st_size)
 
     @classmethod
-    def VALIDATE_INPUTS(cls, character, char_path=""):
+    def VALIDATE_INPUTS(cls, char, char_path=""):
         # Through Character.open so the caps apply; this runs on every queue, before the node.
         try:
-            Character.open(folders.resolve(character, char_path))
+            Character.open(folders.resolve(char, char_path))
         except CharError as error:
             return str(error)
         except Exception:
-            return f"{character} is not a readable character file."
+            return f"{char} is not a readable character file."
         return True
 
-    def load(self, character, char_path=""):
-        return (Character.open(folders.resolve(character, char_path)),)
+    def load(self, char, char_path=""):
+        return (Character.open(folders.resolve(char, char_path)),)

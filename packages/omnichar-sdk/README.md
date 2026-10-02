@@ -54,10 +54,37 @@ omnichar-sdk prompt Ada.char --style token
 `inspect --json` prints the whole character record, so a tool in any language can read a `.char`
 through this command without a Python binding.
 
-## The format
+## Notes
 
-`docs/char-format.md` in this repository describes the container and the manifest well enough to
-write a reader in another language.
+`style` picks the addressing a model was trained on. FLUX.2 reads ordinal prose, MiniMax H3 reads
+`<Picture N>`, Seedance reads `@ImageN`. `description-only` drops positions, which is what a LoRA
+needs. `first_position` sets the number the first reference gets, so a prompt and a sheet built at
+the same offset agree about which image is image one.
+
+`limit` divides the slots between face, body and outfit rather than cutting the end of the list,
+so a character does not lose its wardrobe when a model takes fewer references than it has.
+
+`common_size` picks the size a batch is built at and `fit` resizes onto it: `pad` letterboxes,
+`cover` crops, `stretch` distorts.
+
+A character's LoRA records the strength it was judged at. An overfitted adapter is only usable
+turned down, so prefer the recorded value over 1.0.
+
+## Building a character
+
+`encode_character` writes a new `.char` from `(image, role)` pairs and compiles a reference set
+for each architecture, so the result applies without a rebuild:
+
+```python
+from omnichar_sdk import encode_character, write
+
+doc = encode_character("Ada", "A woman with short dark hair.", [(face, "face"), (body, "body")])
+write("Ada.char", doc)
+```
+
+It does not compute identity vectors. Those need face encoders this package does not ship, so
+Omnichar Studio's verify and continuity features stay unavailable until it re-encodes the file.
+Rendering is unaffected.
 
 ## Licence
 

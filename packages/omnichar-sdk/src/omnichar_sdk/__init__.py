@@ -18,6 +18,16 @@ from .charfile import (
     looks_like_char,
     payload_key,
     read,
+    write,
+)
+from .encode import (
+    FAL_REF_ARCH,
+    FLUX2_KLEIN_ARCH,
+    MINIMAX_H3_ARCH,
+    REFERENCE_POLICIES,
+    build_payload,
+    encode_character,
+    normalise_reference,
 )
 from .lora import (
     KEY_SUFFIXES,
@@ -34,6 +44,14 @@ from .sheet import reference_sheet, sheet_png
 __version__ = "0.0.1"
 
 __all__ = [
+    "write",
+    "normalise_reference",
+    "encode_character",
+    "build_payload",
+    "REFERENCE_POLICIES",
+    "MINIMAX_H3_ARCH",
+    "FLUX2_KLEIN_ARCH",
+    "FAL_REF_ARCH",
     "FIT_MODES",
     "KEY_SUFFIXES",
     "KEY_WRAPPERS",

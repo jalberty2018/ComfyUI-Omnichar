@@ -13,15 +13,10 @@ __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]
 
 try:
     from .nodes import folders
-    from .nodes.info import OmnicharCharacterInfo
+    from .nodes.apply import OmnicharApplyCharacter
+    from .nodes.encode import OmnicharEncodeCharacter, OmnicharSaveCharacter
     from .nodes.load import OmnicharLoadCharacter
-    from .nodes.lora import OmnicharApplyCharacterLoRA, OmnicharExportCharacterLoRA
-    from .nodes.prompt import OmnicharCharacterPrompt
-    from .nodes.references import (
-        OmnicharCharacterReferenceAt,
-        OmnicharCharacterReferenceList,
-        OmnicharCharacterReferences,
-    )
+    from .nodes.lora import OmnicharApplyCharacterLoRA
 except ImportError as error:
     logger.error(
         "Omnichar character nodes are not loaded: %s\n"
@@ -34,22 +29,16 @@ else:
 
     NODE_CLASS_MAPPINGS = {
         "OmnicharLoadCharacter": OmnicharLoadCharacter,
-        "OmnicharCharacterInfo": OmnicharCharacterInfo,
-        "OmnicharCharacterPrompt": OmnicharCharacterPrompt,
-        "OmnicharCharacterReferences": OmnicharCharacterReferences,
-        "OmnicharCharacterReferenceList": OmnicharCharacterReferenceList,
-        "OmnicharCharacterReferenceAt": OmnicharCharacterReferenceAt,
+        "OmnicharApplyCharacter": OmnicharApplyCharacter,
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
-        "OmnicharExportCharacterLoRA": OmnicharExportCharacterLoRA,
+        "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
+        "OmnicharSaveCharacter": OmnicharSaveCharacter,
     }
 
     NODE_DISPLAY_NAME_MAPPINGS = {
-        "OmnicharLoadCharacter": "Load Character (.char)",
-        "OmnicharCharacterInfo": "Character Info",
-        "OmnicharCharacterPrompt": "Character Prompt",
-        "OmnicharCharacterReferences": "Character References",
-        "OmnicharCharacterReferenceList": "Character Reference List",
-        "OmnicharCharacterReferenceAt": "Character Reference At",
+        "OmnicharLoadCharacter": "Load Character",
+        "OmnicharApplyCharacter": "Apply Character",
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
-        "OmnicharExportCharacterLoRA": "Export Character LoRA",
+        "OmnicharEncodeCharacter": "Encode Character",
+        "OmnicharSaveCharacter": "Save Character",
     }
