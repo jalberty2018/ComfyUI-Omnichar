@@ -34,6 +34,15 @@ def register() -> None:
     folder_paths.folder_names_and_paths[CATEGORY] = (paths, extensions)
 
 
+def forget_listing() -> None:
+    """Drop ComfyUI's cached directory listing, so a character just written shows up at once."""
+    for attr in ("filename_list_cache", "cache_helper"):
+        cache = getattr(folder_paths, attr, None)
+        clear = getattr(cache, "clear", None)
+        if clear is not None:
+            clear()
+
+
 def listed() -> list[str]:
     """Character filenames for the loader dropdown."""
     try:

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from omnichar_sdk import (
@@ -17,6 +18,8 @@ from omnichar_sdk import (
 
 from . import folders
 from .common import CATEGORY, CHARACTER_INPUT, from_image
+
+logger = logging.getLogger("omnichar")
 
 #: Several slots per role, because a ComfyUI input takes one link. Each still accepts a batch, so
 #: three Load Image nodes or one batch of three both give three references.
@@ -144,6 +147,12 @@ class OmnicharSaveCharacter:
     OUTPUT_NODE = True
     DESCRIPTION = "Write a character into the characters folder so the loader can pick it up."
 
+    @classmethod
+    def IS_CHANGED(cls, char, filename, overwrite=False):
+        # Always. Writing a file is a side effect, and a cached save is a save that never happens:
+        # ComfyUI reports "executed in 0.00 seconds" and nothing reaches disk.
+        return float("nan")
+
     def save(self, char, filename, overwrite=False):
         roots = folders.roots()
         if not roots:
@@ -158,4 +167,7 @@ class OmnicharSaveCharacter:
             )
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(char.to_bytes())
-        return (str(target),)
+        folders.forget_listing()
+        logger.info("Omnichar: wrote %s (%d bytes)", target, target.stat().st_size)
+        # Without a ui payload an OUTPUT_NODE shows nothing, which reads as the node doing nothing.
+        return {"ui": {"text": [str(target)]}, "result": (str(target),)}

@@ -185,8 +185,10 @@ def test_encode_character_round_trips_through_save_and_load(pack, tmp_path):
     # Compiled for both reference archs, so it applies without a rebuild.
     assert char.get_info().ref_archs == ["flux2-klein", "minimax-h3"]
 
-    (path,) = module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]().save(char, "bo")
-    written = Path(path)
+    saved = module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]().save(char, "bo")
+    # An OUTPUT_NODE returns a ui payload alongside its result, or the node looks like a no-op.
+    assert saved["ui"]["text"] == list(saved["result"])
+    written = Path(saved["result"][0])
     assert written.name == "bo.char" and written.parent == (models / "characters")
 
     from omnichar_sdk import Character
@@ -204,7 +206,7 @@ def test_saving_refuses_to_clobber_unless_told(pack):
     with pytest.raises(CharError) as excinfo:
         save.save(char, "Ada.char")
     assert "already exists" in str(excinfo.value)
-    assert save.save(char, "Ada.char", overwrite=True)[0].endswith("Ada.char")
+    assert save.save(char, "Ada.char", overwrite=True)["result"][0].endswith("Ada.char")
 
 
 def test_encode_with_no_images_says_what_to_wire(pack):
@@ -283,3 +285,28 @@ def test_a_batch_in_one_slot_still_counts_as_several_references(pack):
         "Bo", "A tall man.", 512, face=torch.rand(4, 96, 64, 3)
     )
     assert [r.role for r in char.get_references()] == ["face"] * 4
+
+
+def test_saving_is_never_cached(pack):
+    """A cached save is a save that never happens: ComfyUI reports 0.00s and writes nothing."""
+    import math
+
+    module, _ = pack
+    cls = module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]
+    assert math.isnan(cls.IS_CHANGED(None, "x.char"))
+
+
+def test_saving_makes_the_new_character_visible_to_the_loader(pack):
+    module, models = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+
+    listed = lambda: set(  # noqa: E731
+        module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"].INPUT_TYPES()["required"]["char"][0]
+    )
+    before = listed()
+    module.NODE_CLASS_MAPPINGS["OmnicharSaveCharacter"]().save(char, "fresh")
+    after = listed()
+    # Without dropping ComfyUI's cached listing this stays stale until a restart.
+    assert "fresh.char" in after - before
+    assert (models / "characters" / "fresh.char").is_file()
