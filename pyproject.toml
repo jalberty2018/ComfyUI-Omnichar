@@ -1,0 +1,16 @@
+[project]
+name = "comfyui-omnichar"
+description = "Load Omnichar Studio .char characters in ComfyUI: references, prompt and LoRA."
+version = "0.0.1"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["omnichar-char>=0.0.1,<0.2"]
+
+[project.urls]
+Repository = "https://github.com/omnichar/omnichar-char"
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "Omnichar Character (.char)"
+Icon = ""

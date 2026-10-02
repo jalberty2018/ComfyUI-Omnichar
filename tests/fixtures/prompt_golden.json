@@ -1,0 +1,1334 @@
+[
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Image 1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Image 1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "Image 1 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Image 2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Image 2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "Image 2 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Image 1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Image 1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "Image 1 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Image 2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Image 2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "Image 2 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 1 and 2 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 1 and 2 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "Images 1 and 2 show Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 2 and 3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 2 and 3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "Images 2 and 3 show Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 1 and 2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 1 and 2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "Images 1 and 2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 2 and 3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 2 and 3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "Images 2 and 3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "Images 1, 2 and 3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "ordinal",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "Images 2, 3 and 4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> shows Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> shows Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> shows Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> shows Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> <Picture 2> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> <Picture 3> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. Picture 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. Picture 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "<Picture 1> <Picture 2> <Picture 3> show Ada, the same character in every image. Picture 1 shows Ada's face. Picture 2 shows Ada's full body and build. Picture 3 shows Ada's outfit. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. Picture 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. Picture 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "token",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "<Picture 2> <Picture 3> <Picture 4> show Ada, the same character in every image. Picture 2 shows Ada's face. Picture 3 shows Ada's full body and build. Picture 4 shows Ada's outfit. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2 shows Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 1,
+  "roles": [
+   "face"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2 shows Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1 and @Image2 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 2,
+  "roles": [
+   "face",
+   "body"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2 and @Image3 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": false,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 1,
+  "desc": "",
+  "out": "@Image1, @Image2 and @Image3 show Ada, the same character in every image. Image 1 shows Ada's face. Image 2 shows Ada's full body and build. Image 3 shows Ada's outfit. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "at-image",
+  "n": 3,
+  "roles": [
+   "face",
+   "body",
+   "cloth"
+  ],
+  "role_lines": true,
+  "first": 2,
+  "desc": "",
+  "out": "@Image2, @Image3 and @Image4 show Ada, the same character in every image. Image 2 shows Ada's face. Image 3 shows Ada's full body and build. Image 4 shows Ada's outfit. "
+ },
+ {
+  "style": "description-only",
+  "n": 0,
+  "roles": [],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow",
+  "out": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow "
+ },
+ {
+  "style": "description-only",
+  "n": 0,
+  "roles": [],
+  "role_lines": false,
+  "first": 1,
+  "desc": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow.",
+  "out": "Ada, a woman in her thirties with short dark hair and a scar through her left eyebrow. "
+ },
+ {
+  "style": "description-only",
+  "n": 0,
+  "roles": [],
+  "role_lines": false,
+  "first": 1,
+  "desc": "",
+  "out": ""
+ },
+ {
+  "style": "description-only",
+  "n": 0,
+  "roles": [],
+  "role_lines": false,
+  "first": 1,
+  "desc": "  spaced   out  ",
+  "out": "spaced out "
+ }
+]

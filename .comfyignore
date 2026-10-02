@@ -1,0 +1,4 @@
+tests/
+packages/
+.venv-dev/
+.venv-bare/

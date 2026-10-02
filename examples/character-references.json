@@ -1,0 +1,226 @@
+{
+  "last_node_id": 7,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "OmnicharLoadCharacter",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        320,
+        80
+      ],
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "CHARACTER",
+          "links": [
+            1,
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnicharLoadCharacter"
+      },
+      "widgets_values": [
+        "Ada.char",
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "type": "OmnicharCharacterReferences",
+      "pos": [
+        420,
+        120
+      ],
+      "size": [
+        330,
+        170
+      ],
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character",
+          "type": "CHARACTER",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnicharCharacterReferences"
+      },
+      "widgets_values": [
+        "flux2-klein",
+        "any",
+        0,
+        "first",
+        "pad"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "OmnicharCharacterPrompt",
+      "pos": [
+        420,
+        340
+      ],
+      "size": [
+        330,
+        200
+      ],
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character",
+          "type": "CHARACTER",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnicharCharacterPrompt"
+      },
+      "widgets_values": [
+        "ordinal",
+        1,
+        "standing in a rain-lit street at night",
+        "",
+        false
+      ]
+    },
+    {
+      "id": 4,
+      "type": "PreviewImage",
+      "pos": [
+        820,
+        120
+      ],
+      "size": [
+        300,
+        250
+      ],
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 5,
+      "type": "PreviewAny",
+      "pos": [
+        820,
+        420
+      ],
+      "size": [
+        300,
+        120
+      ],
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 4
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "CHARACTER"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "CHARACTER"
+    ],
+    [
+      3,
+      2,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Load a character, get its references and its prompt",
+      "bounding": [
+        20,
+        40,
+        1120,
+        540
+      ],
+      "color": "#3f789e"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
