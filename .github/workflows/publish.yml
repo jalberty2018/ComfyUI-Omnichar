@@ -57,6 +57,17 @@ jobs:
         working-directory: ${{ env.PACKAGE_DIR }}
         run: uvx --from twine twine check dist/*
 
+      # A tag that disagrees with pyproject publishes the wrong version, or is rejected as a
+      # duplicate after the release already exists. Cheaper to catch here.
+      - name: Tag matches the built version
+        if: github.event_name == 'release'
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          built=$(ls dist/*.tar.gz | sed -E 's/.*-([0-9][^-]*)\.tar\.gz/\1/')
+          echo "tag=$tag built=$built"
+          [ "$tag" = "$built" ] || { echo "::error::tag $tag does not match version $built"; exit 1; }
+
       - uses: actions/upload-artifact@v5
         with:
           name: dist

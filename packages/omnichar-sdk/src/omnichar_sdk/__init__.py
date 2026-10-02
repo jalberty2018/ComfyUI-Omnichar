@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 """Read Omnichar Studio ``.char`` character files; images need the ``images`` extra."""
 
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _installed_version
+
 from .character import Character, CharacterInfo
 from .charfile import (
     FORMAT_VERSION,
@@ -41,7 +44,10 @@ from .prompt import STYLES, prompt_prefix
 from .references import FIT_MODES, SIZE_POLICIES, Reference, allocate_roles, common_size, fit_roles
 from .sheet import reference_sheet, sheet_png
 
-__version__ = "0.0.1"
+try:
+    __version__ = _installed_version("omnichar-sdk")
+except PackageNotFoundError:  # running from a source tree with nothing installed
+    __version__ = "0.0.0+source"
 
 __all__ = [
     "write",
