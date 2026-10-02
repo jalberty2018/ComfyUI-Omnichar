@@ -27,7 +27,7 @@ classifiers = [
 
 [project.optional-dependencies]
 images = ["Pillow>=10.0"]
-dev = ["pytest>=8.0", "ruff>=0.6", "Pillow>=10.0"]
+dev = ["pytest>=8.0", "ruff>=0.6", "pyright>=1.1.400", "Pillow>=10.0"]
 
 [project.urls]
 Repository = "https://github.com/omnichar/ComfyUI-Omnichar"

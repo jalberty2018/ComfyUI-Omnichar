@@ -35,11 +35,13 @@ jobs:
           uv pip install -e '.[dev]'
           .venv/bin/python -m pytest ../../tests -q --ignore=../../tests/test_comfy_nodes.py
 
+      # pyright runs from the venv, not uvx: an isolated one cannot see Pillow and reports
+      # every PIL import as unresolved.
       - name: Lint and typecheck
         working-directory: ${{ env.PACKAGE_DIR }}
         run: |
           .venv/bin/ruff check src
-          uvx pyright
+          .venv/bin/python -m pyright
 
       - name: Build
         working-directory: ${{ env.PACKAGE_DIR }}
