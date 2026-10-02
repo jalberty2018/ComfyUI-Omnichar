@@ -152,14 +152,14 @@ def test_validate_inputs_rejects_a_path_outside_the_character_directories(pack):
     assert "outside the character directories" in message
 
 
-def test_apply_character_gives_conditioning_references_and_a_sheet(pack):
+def test_decode_character_gives_conditioning_references_and_a_sheet(pack):
     module, _ = pack
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")
     clip = FakeClip()
 
-    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharApplyCharacter"]().apply(
-        char, clip, "ordinal", "in the rain"
+    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(
+        char, "ordinal", clip, "in the rain"
     )
     assert prompt.startswith("Images 1 and 2 show Ada,")
     assert prompt.endswith("in the rain")
@@ -240,3 +240,17 @@ def test_the_shipped_workflows_match_the_nodes(pack):
 def module_for(pack, node_type):
     module, _ = pack
     return module.NODE_CLASS_MAPPINGS.get(node_type)
+
+
+def test_decode_works_with_no_clip_so_no_checkpoint_is_needed(pack):
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+
+    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(
+        char, "ordinal"
+    )
+    # Decoding is extraction, so it must not require a model to be loaded first.
+    assert cond is None
+    assert refs.shape[0] == 2 and sheet.shape[0] == 1
+    assert prompt.startswith("Images 1 and 2 show Ada,")

@@ -13,7 +13,7 @@ __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]
 
 try:
     from .nodes import folders
-    from .nodes.apply import OmnicharApplyCharacter
+    from .nodes.decode import OmnicharDecodeCharacter
     from .nodes.encode import OmnicharEncodeCharacter, OmnicharSaveCharacter
     from .nodes.load import OmnicharLoadCharacter
     from .nodes.lora import OmnicharApplyCharacterLoRA
@@ -29,7 +29,7 @@ else:
 
     NODE_CLASS_MAPPINGS = {
         "OmnicharLoadCharacter": OmnicharLoadCharacter,
-        "OmnicharApplyCharacter": OmnicharApplyCharacter,
+        "OmnicharDecodeCharacter": OmnicharDecodeCharacter,
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
         "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
         "OmnicharSaveCharacter": OmnicharSaveCharacter,
@@ -37,7 +37,7 @@ else:
 
     NODE_DISPLAY_NAME_MAPPINGS = {
         "OmnicharLoadCharacter": "Load Character",
-        "OmnicharApplyCharacter": "Apply Character",
+        "OmnicharDecodeCharacter": "Decode Character",
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
         "OmnicharEncodeCharacter": "Encode Character",
         "OmnicharSaveCharacter": "Save Character",

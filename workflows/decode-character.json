@@ -35,51 +35,8 @@
       ]
     },
     {
-      "id": 2,
-      "type": "CheckpointLoaderSimple",
-      "pos": [
-        40,
-        380
-      ],
-      "size": [
-        330,
-        100
-      ],
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": null,
-          "slot_index": 0
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            2
-          ],
-          "slot_index": 1
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": null,
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CheckpointLoaderSimple"
-      },
-      "widgets_values": [
-        "put-your-checkpoint-here.safetensors"
-      ]
-    },
-    {
       "id": 3,
-      "type": "OmnicharApplyCharacter",
+      "type": "OmnicharDecodeCharacter",
       "pos": [
         430,
         200
@@ -95,11 +52,6 @@
           "name": "char",
           "type": "CHARACTER",
           "link": 1
-        },
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 2
         }
       ],
       "outputs": [
@@ -135,7 +87,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "OmnicharApplyCharacter"
+        "Node name for S&R": "OmnicharDecodeCharacter"
       },
       "widgets_values": [
         "ordinal",
@@ -230,14 +182,6 @@
       3,
       0,
       "CHARACTER"
-    ],
-    [
-      2,
-      2,
-      1,
-      3,
-      1,
-      "CLIP"
     ],
     [
       3,

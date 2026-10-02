@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Turn a character into the references, sheet and conditioning a sampler can take."""
+"""Unpack a character into the references, sheet and prompt the rest of a graph can use."""
 
 from __future__ import annotations
 
@@ -13,16 +13,12 @@ _ARCH_TOOLTIP = (
 )
 
 
-class OmnicharApplyCharacter:
+class OmnicharDecodeCharacter:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
                 "char": CHARACTER_INPUT,
-                "clip": (
-                    "CLIP",
-                    {"tooltip": "Encodes the prompt, so this node can output CONDITIONING."},
-                ),
                 "style": (
                     list(STYLES),
                     {
@@ -36,6 +32,15 @@ class OmnicharApplyCharacter:
                 ),
             },
             "optional": {
+                "clip": (
+                    "CLIP",
+                    {
+                        "tooltip": (
+                            "Optional. Wire one to get CONDITIONING straight out; leave it empty "
+                            "and use the prompt output instead."
+                        )
+                    },
+                ),
                 "prompt": (
                     "STRING",
                     {"default": "", "multiline": True, "tooltip": "Appended after the character."},
@@ -61,15 +66,15 @@ class OmnicharApplyCharacter:
 
     RETURN_TYPES = ("CONDITIONING", "IMAGE", "IMAGE", "STRING")
     RETURN_NAMES = ("conditioning", "references", "sheet", "prompt")
-    FUNCTION = "apply"
+    FUNCTION = "decode"
     CATEGORY = CATEGORY
     DESCRIPTION = (
-        "A character as conditioning, reference images and a contact sheet. Wire only what you "
-        "need; the sheet is there to check the reference numbers against the prompt."
+        "Unpack a character into reference images, a numbered contact sheet and its prompt. Wire "
+        "only what you need. A CLIP is optional and only needed for the conditioning output."
     )
 
-    def apply(
-        self, char, clip, style, prompt="", arch="originals",
+    def decode(
+        self, char, style, clip=None, prompt="", arch="originals",
         max_references=0, size_from="first", fit="pad",
     ):
         try:
@@ -92,4 +97,5 @@ class OmnicharApplyCharacter:
             )
         except CharChanged as error:
             raise fail_on_change(error) from error
-        return (clip.encode_from_tokens_scheduled(clip.tokenize(full)), images, sheet, full)
+        conditioning = clip.encode_from_tokens_scheduled(clip.tokenize(full)) if clip else None
+        return (conditioning, images, sheet, full)
