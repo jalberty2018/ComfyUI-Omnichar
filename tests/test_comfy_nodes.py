@@ -22,12 +22,12 @@ def pack(tmp_path, monkeypatch):
     shutil.copy(FIXTURES / "ada.char", models / "characters" / "Ada.char")
     install(models, unet_stems=DOUBLE)
     monkeypatch.syspath_prepend(str(ROOT.parent))
-    # Restored afterwards: dropping omnichar_char permanently would leave later tests patching a
+    # Restored afterwards: dropping omnichar_sdk permanently would leave later tests patching a
     # stale module object, and a size cap that silently stops applying is worse than a failure.
-    saved = {n: m for n, m in sys.modules.items() if n.startswith("omnichar_char")}
+    saved = {n: m for n, m in sys.modules.items() if n.startswith("omnichar_sdk")}
     for name in list(saved):
         del sys.modules[name]
-    sys.path.insert(0, str(ROOT / "packages/omnichar-char/src"))
+    sys.path.insert(0, str(ROOT / "packages/omnichar-sdk/src"))
     for name in [m for m in list(sys.modules) if "nodes." in m or m.endswith(".nodes")]:
         del sys.modules[name]
     import importlib
@@ -85,7 +85,7 @@ def test_is_changed_is_a_stat_not_a_hash(pack):
 )
 def test_char_path_cannot_read_outside_the_character_directories(pack, override):
     module, _ = pack
-    from omnichar_char import CharError
+    from omnichar_sdk import CharError
 
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     with pytest.raises(CharError) as excinfo:
@@ -122,7 +122,7 @@ def test_references_batch_is_one_tensor_and_the_list_is_many(pack):
 
 def test_reference_at_reports_the_last_valid_index(pack):
     module, _ = pack
-    from omnichar_char import CharError
+    from omnichar_sdk import CharError
 
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")
@@ -147,7 +147,7 @@ def test_prompt_node_appends_the_users_text(pack):
 
 def test_applying_a_lora_the_model_cannot_receive_is_refused(pack):
     module, _ = pack
-    from omnichar_char import CharError
+    from omnichar_sdk import CharError
 
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")

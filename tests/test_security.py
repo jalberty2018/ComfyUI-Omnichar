@@ -11,8 +11,8 @@ import zlib
 
 import pytest
 from conftest import FIXTURES, MANIFEST, build
-from omnichar_char import Character, CharError, Portability, limits, safe_output_name
-from omnichar_char.lora import measure_portability, read_safetensors_header
+from omnichar_sdk import Character, CharError, Portability, limits, safe_output_name
+from omnichar_sdk.lora import measure_portability, read_safetensors_header
 
 
 def test_symlink_member_is_refused(tmp_path):
@@ -170,7 +170,7 @@ def test_save_to_writes_inside_the_directory(tmp_path):
 
 
 def test_cli_extract_names_files_itself_not_from_the_archive(tmp_path):
-    from omnichar_char.cli import main
+    from omnichar_sdk.cli import main
 
     assert main(["extract", str(FIXTURES / "ada.char"), "-o", str(tmp_path)]) == 0
     written = sorted(p.relative_to(tmp_path).as_posix() for p in tmp_path.rglob("*") if p.is_file())

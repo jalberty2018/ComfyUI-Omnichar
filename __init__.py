@@ -25,7 +25,7 @@ try:
 except ImportError as error:
     logger.error(
         "Omnichar character nodes are not loaded: %s\n"
-        "Install the reader with:  pip install omnichar-char\n"
+        "Install the reader with:  pip install omnichar-sdk\n"
         "If ComfyUI runs in its own environment, use that environment's pip.",
         error,
     )

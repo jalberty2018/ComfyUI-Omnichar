@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import os
 
-from omnichar_char import Character, CharError
+from omnichar_sdk import Character, CharError
 
 from . import folders
 from .common import CATEGORY, CHARACTER

@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import Any
 
 import torch
-from omnichar_char import Character, CharChanged, CharError, Reference
+from omnichar_sdk import Character, CharChanged, CharError, Reference
 
 #: forceInput on every CHARACTER input, or the frontend draws a widget for a type it cannot know.
 CHARACTER = "CHARACTER"

@@ -7,7 +7,7 @@ import json
 
 import pytest
 from conftest import FIXTURES
-from omnichar_char import Character, prompt_prefix
+from omnichar_sdk import Character, prompt_prefix
 
 GOLDEN = json.loads((FIXTURES / "prompt_golden.json").read_text())
 NAME = "Ada"

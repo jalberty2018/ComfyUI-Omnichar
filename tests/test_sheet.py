@@ -5,8 +5,8 @@ import zlib
 
 import pytest
 from conftest import FIXTURES
-from omnichar_char import Character, CharError, reference_sheet, sheet_png
-from omnichar_char.references import Reference
+from omnichar_sdk import Character, CharError, reference_sheet, sheet_png
+from omnichar_sdk.references import Reference
 
 
 def char():
@@ -105,7 +105,7 @@ def test_saving_adds_the_extension_and_writes_a_png(tmp_path):
 
 
 def test_the_cli_writes_a_sheet(tmp_path):
-    from omnichar_char.cli import main
+    from omnichar_sdk.cli import main
 
     out = tmp_path / "s.png"
     assert main(["sheet", str(FIXTURES / "ada.char"), "-o", str(out), "--cell", "80"]) == 0

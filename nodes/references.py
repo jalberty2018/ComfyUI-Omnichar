@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from omnichar_char import FIT_MODES, ROLES, SIZE_POLICIES, CharChanged, common_size
+from omnichar_sdk import FIT_MODES, ROLES, SIZE_POLICIES, CharChanged, common_size
 
 from .common import CATEGORY, CHARACTER_INPUT, fail_on_change, references_of, to_image
 
@@ -120,7 +120,7 @@ class OmnicharCharacterReferenceAt:
     )
 
     def load(self, character, arch, index):
-        from omnichar_char import CharError
+        from omnichar_sdk import CharError
 
         try:
             refs = references_of(character, arch, "any", 0)

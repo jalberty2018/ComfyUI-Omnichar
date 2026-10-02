@@ -217,4 +217,4 @@ A `.char` may arrive from anywhere. A reader should:
   number is chosen by whoever wrote the file.
 - Bound image dimensions before decoding.
 
-The reference implementation keeps all of these in one module, `omnichar_char/limits.py`.
+The reference implementation keeps all of these in one module, `omnichar_sdk/limits.py`.

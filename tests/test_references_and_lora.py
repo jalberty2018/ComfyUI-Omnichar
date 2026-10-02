@@ -4,7 +4,7 @@ import shutil
 
 import pytest
 from conftest import FIXTURES, MANIFEST, build
-from omnichar_char import (
+from omnichar_sdk import (
     Character,
     CharChanged,
     CharError,
@@ -145,4 +145,4 @@ def test_fit_says_what_to_install_when_pillow_is_missing(monkeypatch):
     for call in (lambda: ref.open(), lambda: ref.fit((10, 10), "pad")):
         with pytest.raises(CharError) as excinfo:
             call()
-        assert "omnichar-char[images]" in str(excinfo.value)
+        assert "omnichar-sdk[images]" in str(excinfo.value)

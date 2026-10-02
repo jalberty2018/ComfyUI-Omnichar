@@ -4,7 +4,7 @@ import json
 
 import pytest
 from conftest import FIXTURES
-from omnichar_char import Character, CharError, Portability
+from omnichar_sdk import Character, CharError, Portability
 
 
 def char():
@@ -118,7 +118,7 @@ def test_lora_by_name_and_missing_arch():
 
 
 def test_json_inspect_is_machine_readable(capsys):
-    from omnichar_char.cli import main
+    from omnichar_sdk.cli import main
 
     assert main(["inspect", str(FIXTURES / "ada.char"), "--json"]) == 0
     payload = json.loads(capsys.readouterr().out)
@@ -146,7 +146,7 @@ def test_a_non_zip_blob_in_memory_raises_a_readable_error():
 def test_from_file_refuses_an_endless_stream(monkeypatch):
     import io
 
-    from omnichar_char import character as character_module
+    from omnichar_sdk import character as character_module
 
     # Patched on the module character.py reads, so a test that reloaded the package cannot leave
     # this pointing at a stale copy and let the real gigabyte cap run.

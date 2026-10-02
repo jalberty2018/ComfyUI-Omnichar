@@ -1,0 +1,85 @@
+# Publishes packages/omnichar-sdk with Trusted Publishing. No API token is stored anywhere.
+name: Publish omnichar-sdk
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Which index to publish to
+        type: choice
+        options: [testpypi, pypi]
+        default: testpypi
+
+permissions: {}
+
+env:
+  # The package is a subdirectory, so every step runs from here rather than the repo root.
+  PACKAGE_DIR: packages/omnichar-sdk
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.12'
+
+      # The ComfyUI tests are skipped: they need torch, and the pack is not what ships here.
+      - name: Test
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: |
+          uv venv
+          uv pip install -e '.[dev]'
+          .venv/bin/python -m pytest ../../tests -q --ignore=../../tests/test_comfy_nodes.py
+
+      - name: Lint and typecheck
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: |
+          .venv/bin/ruff check src
+          uvx pyright
+
+      - name: Build
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: uv build
+
+      - name: Check metadata
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: uvx --from twine twine check dist/*
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: dist
+          path: ${{ env.PACKAGE_DIR }}/dist/
+
+  testpypi:
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  pypi:
+    needs: build
+    if: github.event_name == 'release' || inputs.target == 'pypi'
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,11 +1,14 @@
 # ComfyUI Omnichar Character Nodes
 
-Load Omnichar Studio `.char` character files in ComfyUI. A `.char` holds a character's reference
-images, its locked description, and often a trained LoRA.
+Load `.char` character files in ComfyUI. A `.char` holds a character's reference images, its
+locked description, and often a trained LoRA.
+
+Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU, or in
+[Omnichar Cloud](https://cloud.omnichar.org).
 
 ## Features
 
-- **Character Files**: Open a `.char` built in Omnichar Studio
+- **Character Files**: Open a `.char` built in Omnichar Studio or Cloud
 - **Reference Images**: As one batch, as a list, or one at a time
 - **Positions Kept**: Reference order is preserved, because a prompt addresses images by number
 - **Prompt Text**: Ordinal, `<Picture N>` and `@ImageN` forms, per model family
@@ -17,7 +20,7 @@ images, its locked description, and often a trained LoRA.
 
 - ComfyUI
 - Python 3.10+
-- `omnichar-char` (installed from `requirements.txt`)
+- `omnichar-sdk` (installed from `requirements.txt`)
 
 ## Installation
 
@@ -105,11 +108,11 @@ the list, so a character does not lose its wardrobe when a model takes fewer ref
 The reader is a standalone package. Install it anywhere, not just in ComfyUI:
 
 ```bash
-pip install omnichar-char
+pip install omnichar-sdk
 ```
 
 ```python
-from omnichar_char import Character
+from omnichar_sdk import Character
 
 char = Character.open("Ada.char")
 char.get_description()
@@ -120,15 +123,15 @@ char.save_reference_sheet("ada.png")
 ```
 
 The base install is standard library only, so it drops into any host without fighting its pins.
-Images need Pillow: `pip install 'omnichar-char[images]'`.
+Images need Pillow: `pip install 'omnichar-sdk[images]'`.
 
 ```bash
-omnichar-char inspect Ada.char --json
-omnichar-char extract Ada.char -o out/
-omnichar-char sheet   Ada.char -o ada.png
+omnichar-sdk inspect Ada.char --json
+omnichar-sdk extract Ada.char -o out/
+omnichar-sdk sheet   Ada.char -o ada.png
 ```
 
-Full API in [packages/omnichar-char/README.md](packages/omnichar-char/README.md).
+Full API in [packages/omnichar-sdk/README.md](packages/omnichar-sdk/README.md).
 
 ## Troubleshooting
 
@@ -173,18 +176,19 @@ ComfyUI-Omnichar/
 ├── web/                         CHARACTER socket colour
 ├── examples/                    a working workflow
 ├── docs/char-format.md          the .char format spec
-├── packages/omnichar-char/      the reader, published to PyPI
+├── packages/omnichar-sdk/      the reader, published to PyPI
 └── tests/
 ```
 
 ## License
 
-`packages/omnichar-char/` is Apache-2.0, so closed-source tools can read `.char` files.
+`packages/omnichar-sdk/` is Apache-2.0, so closed-source tools can read `.char` files.
 Everything else is GPL-3.0-or-later, because ComfyUI is.
 
 ## Links
 
 - [Omnichar Studio](https://omnichar.org)
+- [Omnichar Cloud](https://cloud.omnichar.org)
 - [The `.char` format](docs/char-format.md)
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 - [Report an issue](https://github.com/omnichar/ComfyUI-Omnichar/issues)

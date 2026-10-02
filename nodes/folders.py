@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 import folder_paths
-from omnichar_char import CharError
+from omnichar_sdk import CharError
 
 CATEGORY = "characters"
 SUFFIX = ".char"

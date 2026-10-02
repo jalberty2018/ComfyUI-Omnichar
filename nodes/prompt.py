@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from omnichar_char import STYLES, CharChanged
+from omnichar_sdk import STYLES, CharChanged
 
 from .common import CATEGORY, CHARACTER_INPUT, fail_on_change
 

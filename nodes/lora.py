@@ -8,7 +8,7 @@ import logging
 import comfy.lora
 import comfy.sd
 import folder_paths
-from omnichar_char import KEY_WRAPPERS, CharChanged, CharError, Portability, module_stem
+from omnichar_sdk import KEY_WRAPPERS, CharChanged, CharError, Portability, module_stem
 
 from .common import CATEGORY, CHARACTER_INPUT, fail_on_change
 
