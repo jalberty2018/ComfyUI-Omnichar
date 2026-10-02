@@ -48,6 +48,10 @@ include = ["src"]
 # fixed; what remained was those two categories alone.
 typeCheckingMode = "standard"
 pythonVersion = "3.10"
+# Named rather than auto-discovered. Pillow is an optional extra, so a pyright that resolves the
+# wrong interpreter reports every PIL import as missing, which is what broke CI while passing here.
+venvPath = "."
+venv = ".venv"
 
 [tool.ruff]
 line-length = 100

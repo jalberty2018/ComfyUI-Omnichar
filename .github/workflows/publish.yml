@@ -27,16 +27,22 @@ jobs:
         with:
           python-version: '3.12'
 
-      # The ComfyUI tests are skipped: they need torch, and the pack is not what ships here.
-      - name: Test
+      - name: Install
         working-directory: ${{ env.PACKAGE_DIR }}
         run: |
           uv venv
           uv pip install -e '.[dev]'
-          .venv/bin/python -m pytest ../../tests -q --ignore=../../tests/test_comfy_nodes.py
+          # Proves the extras landed in ./.venv. Without this a missing Pillow surfaces later as
+          # nine unresolved PIL imports from pyright, which names the wrong cause.
+          .venv/bin/python -c "import PIL, pytest, pyright; print('PIL', PIL.__version__)"
 
-      # pyright runs from the venv, not uvx: an isolated one cannot see Pillow and reports
-      # every PIL import as unresolved.
+      # The ComfyUI tests are skipped: they need torch, and the pack is not what ships here.
+      - name: Test
+        working-directory: ${{ env.PACKAGE_DIR }}
+        run: .venv/bin/python -m pytest ../../tests -q --ignore=../../tests/test_comfy_nodes.py
+
+      # pyright reads venvPath/venv from pyproject.toml, so it resolves ./.venv rather than
+      # whichever interpreter it would otherwise discover.
       - name: Lint and typecheck
         working-directory: ${{ env.PACKAGE_DIR }}
         run: |
