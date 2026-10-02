@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""``omnichar-char``: read a character file from a shell, so a non-Python tool can use one too."""
+"""``omnichar-sdk``: read a character file from a shell, so a non-Python tool can use one too."""
 
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def _sheet(char: Character, args) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="omnichar-char", description="Read an Omnichar Studio .char character file."
+        prog="omnichar-sdk", description="Read an Omnichar Studio .char character file."
     )
     sub = parser.add_subparsers(dest="command", required=True)
 

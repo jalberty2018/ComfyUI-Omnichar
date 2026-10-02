@@ -68,7 +68,7 @@ def _require_pillow() -> None:
     except ImportError as error:
         raise CharError(
             "Decoding reference images needs Pillow, which is not installed. "
-            "Install it with: pip install 'omnichar-char[images]'"
+            "Install it with: pip install 'omnichar-sdk[images]'"
         ) from error
     # A reference is untrusted input, so cap the decode before any image is opened.
     Image.MAX_IMAGE_PIXELS = limits.MAX_IMAGE_PIXELS

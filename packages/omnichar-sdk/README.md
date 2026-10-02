@@ -1,4 +1,4 @@
-# omnichar-char
+# omnichar-sdk
 
 Read Omnichar Studio `.char` character files from Python.
 
@@ -6,7 +6,7 @@ A `.char` holds a character's reference images, its locked description, and ofte
 This package opens one and hands back those parts. It reads; it never writes.
 
 ```python
-from omnichar_char import Character
+from omnichar_sdk import Character
 
 char = Character.open("Ada.char")
 
@@ -35,8 +35,8 @@ It takes the same `arch`, `role`, `limit` and `origin` filters as `get_reference
 ## Install
 
 ```
-pip install omnichar-char              # reads everything; needs only the standard library
-pip install 'omnichar-char[images]'    # adds Pillow, for decoding and resizing references
+pip install omnichar-sdk              # reads everything; needs only the standard library
+pip install 'omnichar-sdk[images]'    # adds Pillow, for decoding and resizing references
 ```
 
 The base install has no dependencies on purpose. It is meant to drop into ComfyUI, A1111, SwarmUI
@@ -46,9 +46,9 @@ tensors. That belongs to the host.
 ## From a shell
 
 ```
-omnichar-char inspect Ada.char --json
-omnichar-char extract Ada.char -o out/
-omnichar-char prompt Ada.char --style token
+omnichar-sdk inspect Ada.char --json
+omnichar-sdk extract Ada.char -o out/
+omnichar-sdk prompt Ada.char --style token
 ```
 
 `inspect --json` prints the whole character record, so a tool in any language can read a `.char`
