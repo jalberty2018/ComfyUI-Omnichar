@@ -17,6 +17,7 @@ try:
     from .nodes.encode import OmnicharEncodeCharacter, OmnicharSaveCharacter
     from .nodes.load import OmnicharLoadCharacter
     from .nodes.lora import OmnicharApplyCharacterLoRA
+    from .nodes.pick import OmnicharCharacterReference
 except ImportError as error:
     logger.error(
         "Omnichar character nodes are not loaded: %s\n"
@@ -30,6 +31,7 @@ else:
     NODE_CLASS_MAPPINGS = {
         "OmnicharLoadCharacter": OmnicharLoadCharacter,
         "OmnicharDecodeCharacter": OmnicharDecodeCharacter,
+        "OmnicharCharacterReference": OmnicharCharacterReference,
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
         "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
         "OmnicharSaveCharacter": OmnicharSaveCharacter,
@@ -38,6 +40,7 @@ else:
     NODE_DISPLAY_NAME_MAPPINGS = {
         "OmnicharLoadCharacter": "Load Character",
         "OmnicharDecodeCharacter": "Decode Character",
+        "OmnicharCharacterReference": "Character Reference",
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
         "OmnicharEncodeCharacter": "Encode Character",
         "OmnicharSaveCharacter": "Save Character",

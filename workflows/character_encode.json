@@ -1,0 +1,347 @@
+{
+  "id": "e4327370-4382-4371-b7c2-c8e22dad4ad0",
+  "revision": 0,
+  "last_node_id": 6,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        -459.69730085981337,
+        5709.157569403838
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "face.png",
+        "image"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        -458.3330449692669,
+        6083.905054130407
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "cloth1.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        -114.22770739045802,
+        6088.2907020891635
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "cloth2.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [
+        210.9050083614212,
+        6092.580244950313
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "body.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "OmnicharEncodeCharacter",
+      "pos": [
+        -115.22442398174212,
+        5712.847526183683
+      ],
+      "size": [
+        400,
+        296
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "face",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "face_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "face_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "body",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "body_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "body_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "cloths",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "cloths_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "name": "cloths_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "ver": "cc0c1e3d5ff91e2a4ec7c5a95341fbca2c7cc8d2",
+        "Node name for S&R": "OmnicharEncodeCharacter"
+      },
+      "widgets_values": [
+        "sia",
+        "a 22 year old woman, fair skin,. model like looks",
+        512
+      ]
+    },
+    {
+      "id": 1,
+      "type": "OmnicharSaveCharacter",
+      "pos": [
+        338.25385941481136,
+        5712.970466074412
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "path",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "ver": "e3dcc35327e16415b1fc3267be3b6b1ddaf57017",
+        "Node name for S&R": "OmnicharSaveCharacter"
+      },
+      "widgets_values": [
+        "sia.char",
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      6,
+      0,
+      1,
+      0,
+      "CHARACTER"
+    ],
+    [
+      2,
+      2,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      5,
+      0,
+      6,
+      3,
+      "IMAGE"
+    ],
+    [
+      4,
+      3,
+      0,
+      6,
+      6,
+      "IMAGE"
+    ],
+    [
+      5,
+      4,
+      0,
+      6,
+      7,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5927460009126992,
+      "offset": [
+        1602.7778831733515,
+        -5444.230970801048
+      ]
+    },
+    "frontendVersion": "1.47.11"
+  },
+  "version": 0.4
+}

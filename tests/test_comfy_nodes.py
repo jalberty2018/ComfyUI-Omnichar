@@ -44,7 +44,7 @@ def pack(tmp_path, monkeypatch):
 
 def test_every_node_registers_with_a_display_name(pack):
     module, _ = pack
-    assert len(module.NODE_CLASS_MAPPINGS) == 5
+    assert len(module.NODE_CLASS_MAPPINGS) == 6
     assert set(module.NODE_CLASS_MAPPINGS) == set(module.NODE_DISPLAY_NAME_MAPPINGS)
 
 
@@ -310,3 +310,32 @@ def test_saving_makes_the_new_character_visible_to_the_loader(pack):
     # Without dropping ComfyUI's cached listing this stays stale until a restart.
     assert "fresh.char" in after - before
     assert (models / "characters" / "fresh.char").is_file()
+
+
+def test_character_reference_returns_one_image_by_position(pack):
+    """A model with numbered reference slots needs one image per slot, not a capped batch."""
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    node = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]()
+
+    first, role_a, count = node.pick(char, 0)
+    second, role_b, _ = node.pick(char, 1)
+    assert count == 2
+    assert first.shape[0] == 1 and second.shape[0] == 1
+    assert (role_a, role_b) == ("face", "body")
+    # Different positions must be different images, which a capped batch would not guarantee.
+    assert first.shape != second.shape
+
+
+def test_a_position_past_the_end_says_what_the_last_one_is(pack):
+    module, _ = pack
+    from omnichar_sdk import CharError
+
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    with pytest.raises(CharError) as excinfo:
+        module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]().pick(char, 4)
+    message = str(excinfo.value)
+    assert "The last one is 1" in message
+    assert "Leave the extra slots" in message
