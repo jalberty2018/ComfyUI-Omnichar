@@ -3,9 +3,17 @@
 
 from __future__ import annotations
 
-from omnichar_sdk import FIT_MODES, SIZE_POLICIES, STYLES, CharChanged, CharError, common_size
+from omnichar_sdk import (
+    FIT_MODES,
+    SIZE_POLICIES,
+    STYLES,
+    CharChanged,
+    CharError,
+    common_size,
+    reference_sheet,
+)
 
-from .common import CATEGORY, CHARACTER_INPUT, fail_on_change, to_image
+from .common import CATEGORY, CHARACTER_INPUT, REFS, fail_on_change, to_image
 
 _ARCH_TOOLTIP = (
     "Which reference set to send. 'originals' is what the character was built from; naming a "
@@ -64,8 +72,8 @@ class OmnicharDecodeCharacter:
             },
         }
 
-    RETURN_TYPES = ("CONDITIONING", "IMAGE", "IMAGE", "STRING")
-    RETURN_NAMES = ("conditioning", "references", "sheet", "prompt")
+    RETURN_TYPES = ("CONDITIONING", "IMAGE", REFS, "IMAGE", "STRING")
+    RETURN_NAMES = ("conditioning", "references", "refs", "sheet", "prompt")
     FUNCTION = "decode"
     CATEGORY = CATEGORY
     DESCRIPTION = (
@@ -92,10 +100,10 @@ class OmnicharDecodeCharacter:
             full = f"{text}{prompt}".strip()
             size = common_size(refs, size_from)
             images = to_image([ref.fit(size, fit) for ref in refs])
-            sheet = to_image(
-                [char.reference_sheet(arch=selected, limit=max_references or None)]
-            )
+            # Built from the same resolved list, so the numbers on the sheet are the numbers the
+            # prompt uses and the positions the slots receive.
+            sheet = to_image([reference_sheet(refs, title=char.name)])
         except CharChanged as error:
             raise fail_on_change(error) from error
         conditioning = clip.encode_from_tokens_scheduled(clip.tokenize(full)) if clip else None
-        return (conditioning, images, sheet, full)
+        return (conditioning, images, refs, sheet, full)

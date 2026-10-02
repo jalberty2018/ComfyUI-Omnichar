@@ -9,7 +9,7 @@ Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU,
 ## Features
 
 - **Character Files**: Open a `.char` built in Omnichar Studio or Cloud
-- **Reference Images**: One batch, or one at a time by position for a model with numbered slots
+- **Reference Images**: One batch, or one per numbered slot, both from the same resolved set
 - **Positions Kept**: Reference order is preserved, because a prompt addresses images by number
 - **Conditioning**: Wire a CLIP to get conditioning straight out, or take the prompt as text
 - **Trained LoRA**: Applied to MODEL and CLIP when the character carries one
@@ -54,8 +54,8 @@ and both read the same files.
 | Node | Inputs | Outputs |
 | --- | --- | --- |
 | Load Character | `char`, `char_path` | `char` |
-| Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `sheet`, `prompt` |
-| Character Reference | `char`, `index`, `arch` | `image`, `role`, `count` |
+| Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `refs`, `sheet`, `prompt` |
+| Character Reference | `refs`, `index` | `image`, `role`, `count` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
 | Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
 | Save Character | `char`, `filename`, `overwrite` | `path` |

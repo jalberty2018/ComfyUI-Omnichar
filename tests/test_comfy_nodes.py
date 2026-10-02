@@ -158,15 +158,16 @@ def test_decode_character_gives_conditioning_references_and_a_sheet(pack):
     (char,) = loader.load("Ada.char")
     clip = FakeClip()
 
-    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(
-        char, "ordinal", clip, "in the rain"
-    )
+    cond, images, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS[
+        "OmnicharDecodeCharacter"
+    ]().decode(char, "ordinal", clip, "in the rain")
     assert prompt.startswith("Images 1 and 2 show Ada,")
     assert prompt.endswith("in the rain")
     # The prompt reaches the encoder, which is the whole reason this node takes a CLIP.
     assert clip.seen == prompt
     assert cond[0][0].startswith("cond:Images 1 and 2")
-    assert refs.shape[0] == 2
+    assert images.shape[0] == 2
+    assert len(refs) == 2
     assert sheet.shape[0] == 1 and sheet.shape[3] == 3
 
 
@@ -249,12 +250,12 @@ def test_decode_works_with_no_clip_so_no_checkpoint_is_needed(pack):
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")
 
-    cond, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(
-        char, "ordinal"
-    )
+    cond, images, refs, sheet, prompt = module.NODE_CLASS_MAPPINGS[
+        "OmnicharDecodeCharacter"
+    ]().decode(char, "ordinal")
     # Decoding is extraction, so it must not require a model to be loaded first.
     assert cond is None
-    assert refs.shape[0] == 2 and sheet.shape[0] == 1
+    assert images.shape[0] == 2 and len(refs) == 2 and sheet.shape[0] == 1
     assert prompt.startswith("Images 1 and 2 show Ada,")
 
 
@@ -317,10 +318,11 @@ def test_character_reference_returns_one_image_by_position(pack):
     module, _ = pack
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "token")[2]
     node = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]()
 
-    first, role_a, count = node.pick(char, 0)
-    second, role_b, _ = node.pick(char, 1)
+    first, role_a, count = node.pick(refs, 0)
+    second, role_b, _ = node.pick(refs, 1)
     assert count == 2
     assert first.shape[0] == 1 and second.shape[0] == 1
     assert (role_a, role_b) == ("face", "body")
@@ -334,8 +336,27 @@ def test_a_position_past_the_end_says_what_the_last_one_is(pack):
 
     loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
     (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "token")[2]
     with pytest.raises(CharError) as excinfo:
-        module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]().pick(char, 4)
+        module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]().pick(refs, 4)
     message = str(excinfo.value)
     assert "The last one is 1" in message
     assert "Leave the extra slots" in message
+
+
+def test_slots_and_prompt_cannot_disagree_about_the_reference_set(pack):
+    """The point of routing through refs: one node decides the set, so numbering cannot drift."""
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    decode = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]()
+    pick = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]()
+
+    _, _, refs, _, prompt = decode.decode(char, "token", arch="flux2-klein", max_references=1)
+    # One reference compiled for flux2-klein, so the prompt names exactly one picture and the
+    # only valid slot index is 0.
+    assert prompt.startswith("<Picture 1> shows Ada,")
+    assert "<Picture 2>" not in prompt
+    assert pick.pick(refs, 0)[2] == 1
+    with pytest.raises(Exception, match="index 1 does not exist"):
+        pick.pick(refs, 1)

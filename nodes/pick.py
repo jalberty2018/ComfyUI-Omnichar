@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from omnichar_sdk import CharChanged, CharError
 
-from .common import CATEGORY, CHARACTER_INPUT, fail_on_change, to_image
+from .common import CATEGORY, REFS_INPUT, fail_on_change, to_image
 
 
 class OmnicharCharacterReference:
@@ -13,7 +13,7 @@ class OmnicharCharacterReference:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "char": CHARACTER_INPUT,
+                "refs": REFS_INPUT,
                 "index": (
                     "INT",
                     {
@@ -26,19 +26,7 @@ class OmnicharCharacterReference:
                         ),
                     },
                 ),
-            },
-            "optional": {
-                "arch": (
-                    "STRING",
-                    {
-                        "default": "originals",
-                        "tooltip": (
-                            "Which reference set to read. Use the same value on every node "
-                            "feeding one model, or the positions will not line up."
-                        ),
-                    },
-                ),
-            },
+            }
         }
 
     RETURN_TYPES = ("IMAGE", "STRING", "INT")
@@ -46,25 +34,22 @@ class OmnicharCharacterReference:
     FUNCTION = "pick"
     CATEGORY = CATEGORY
     DESCRIPTION = (
-        "One reference image, by position. Use this for a model that takes references in "
-        "numbered slots, so the slot a reference lands in is the number the prompt gives it."
+        "One reference image, by position, from Decode Character's refs output. Use this for a "
+        "model that takes references in numbered slots. The image comes out at its own size, "
+        "because a slot takes one picture and does not need a common one."
     )
 
-    def pick(self, char, index, arch="originals"):
+    def pick(self, refs, index):
         try:
-            selected = None if arch in ("", "originals") else arch
-            refs = char.get_references(arch=selected)
             if not refs:
                 raise CharError(
-                    f"{char.name} has no references"
-                    + (f" compiled for {arch}" if selected else "")
-                    + "."
+                    "Decode Character sent no references. Check its reference set and maximum."
                 )
             if index >= len(refs):
                 raise CharError(
-                    f"{char.name} has {len(refs)} references in its {arch} set, so index {index} "
-                    f"does not exist. The last one is {len(refs) - 1}. Leave the extra slots on "
-                    "the model empty rather than repeating a reference."
+                    f"Decode Character sent {len(refs)} references, so index {index} does not "
+                    f"exist. The last one is {len(refs) - 1}. Leave the extra slots on the model "
+                    "empty rather than repeating a reference."
                 )
             chosen = refs[index]
             image = to_image([chosen.open()])

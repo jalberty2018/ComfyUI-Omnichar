@@ -12,6 +12,12 @@ from omnichar_sdk import Character, CharChanged, CharError, Reference
 CHARACTER = "CHARACTER"
 CHARACTER_INPUT = (CHARACTER, {"forceInput": True})
 
+#: The resolved reference list, already filtered and ordered. Carried as its own type so one node
+#: decides which references a model gets; a second node reading the character again could pick a
+#: different set and the prompt's numbers would stop matching the slots.
+REFS = "CHARACTER_REFS"
+REFS_INPUT = (REFS, {"forceInput": True})
+
 CATEGORY = "Omnichar"
 
 
