@@ -1,7 +1,8 @@
-# ComfyUI Omnichar Custom Node
+# ComfyUI Omnichar Custom Node(Consistent Portable Characters)
 
 Official `.char` integration with ComfyUI. Build a character once, use it across image and
-video models.
+video models. Same face, cloths & body across every model. 
+Currently supports: Minimax H3, Krea2, Flux2 dev, klein9B & 4B. 
 
 <img src="public/image.png" alt="Omnichar nodes in a ComfyUI graph" width="100%">
 
