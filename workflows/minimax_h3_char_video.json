@@ -1,8 +1,8 @@
 {
   "id": "e3f2b845-8f2c-4b5a-9caf-eac1029d3e7e",
   "revision": 0,
-  "last_node_id": 156,
-  "last_link_id": 323,
+  "last_node_id": 157,
+  "last_link_id": 313,
   "nodes": [
     {
       "id": 119,
@@ -100,7 +100,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 20,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -144,7 +144,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 19,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -260,7 +260,7 @@
         140
       ],
       "flags": {},
-      "order": 18,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -323,7 +323,7 @@
         60
       ],
       "flags": {},
-      "order": 17,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -467,7 +467,7 @@
         "Node name for S&R": "RandomNoise"
       },
       "widgets_values": [
-        951053097728244,
+        380678174413248,
         "randomize"
       ]
     },
@@ -483,7 +483,7 @@
         110
       ],
       "flags": {},
-      "order": 21,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -613,52 +613,6 @@
       "bgcolor": "#533"
     },
     {
-      "id": 115,
-      "type": "ResolutionSelector",
-      "pos": [
-        -1480,
-        5610
-      ],
-      "size": [
-        270,
-        170
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "showAdvanced": false,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "width",
-          "type": "INT",
-          "links": [
-            276
-          ]
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "links": [
-            277
-          ]
-        }
-      ],
-      "title": "Resolution Selector (Size)",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.30.0",
-        "Node name for S&R": "ResolutionSelector"
-      },
-      "widgets_values": [
-        "3:4 (Portrait Standard)",
-        1,
-        32
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 136,
       "type": "MiniMaxH3ReferenceToVideo",
       "pos": [
@@ -670,7 +624,7 @@
         404
       ],
       "flags": {},
-      "order": 16,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -693,28 +647,28 @@
           "name": "ref_images.ref_image_0",
           "shape": 7,
           "type": "IMAGE",
-          "link": 320
+          "link": 310
         },
         {
           "label": "ref_image_1",
           "name": "ref_images.ref_image_1",
           "shape": 7,
           "type": "IMAGE",
-          "link": 321
+          "link": 311
         },
         {
           "label": "ref_image_2",
           "name": "ref_images.ref_image_2",
           "shape": 7,
           "type": "IMAGE",
-          "link": 322
+          "link": 312
         },
         {
           "label": "ref_image_3",
           "name": "ref_images.ref_image_3",
           "shape": 7,
           "type": "IMAGE",
-          "link": 323
+          "link": 313
         },
         {
           "label": "ref_image_4",
@@ -799,6 +753,108 @@
       ]
     },
     {
+      "id": 141,
+      "type": "OmnicharLoadCharacter",
+      "pos": [
+        -1134.083892240246,
+        5621.86732026151
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "links": [
+            301
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "ver": "cc0c1e3d5ff91e2a4ec7c5a95341fbca2c7cc8d2",
+        "Node name for S&R": "OmnicharLoadCharacter"
+      },
+      "widgets_values": [
+        "sia.char",
+        ""
+      ]
+    },
+    {
+      "id": 157,
+      "type": "OmnicharCharacterReferencesSplit",
+      "pos": [
+        -792.0109563211049,
+        5620.603818355664
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "refs",
+          "type": "CHARACTER_REFS",
+          "link": 309
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image_0",
+          "type": "IMAGE",
+          "links": [
+            310
+          ]
+        },
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "links": [
+            311
+          ]
+        },
+        {
+          "name": "image_2",
+          "type": "IMAGE",
+          "links": [
+            312
+          ]
+        },
+        {
+          "name": "image_3",
+          "type": "IMAGE",
+          "links": [
+            313
+          ]
+        },
+        {
+          "name": "image_4",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "ver": "1fb2bd0e80a0378deea0e723c28261d6e25ee604",
+        "Node name for S&R": "OmnicharCharacterReferencesSplit"
+      },
+      "widgets_values": []
+    },
+    {
       "id": 152,
       "type": "OmnicharDecodeCharacter",
       "pos": [
@@ -840,10 +896,7 @@
           "name": "refs",
           "type": "CHARACTER_REFS",
           "links": [
-            316,
-            317,
-            318,
-            319
+            309
           ]
         },
         {
@@ -866,7 +919,7 @@
       },
       "widgets_values": [
         "token",
-        "sia walking on the beach",
+        "sia sitting on the studio floor facing the camera at a slight angle, both knees raised together with feet flat on the floor, both forearms resting across the knees with one hand loosely holding the other wrist, she holds the pose with a calm direct gaze into the lens, slowly tilts her head a little further to one side, blinks softly, fingers shift slightly on her wrist, subtle natural breathing, lips closed, silent posing with no speaking, body stays seated in the same position throughout, plain light grey seamless studio backdrop, bright neutral daylight from the upper left, crisp clean sunlight with soft-edged shadows falling across the floor and wall, airy high-key exposure, cool neutral white balance, soft grey shadows, static locked-off camera at eye level, full body shot with feet fully in frame, 35mm lens at f/11, deep focus with the whole frame sharp from the feet to the backdrop, slow smooth controlled movement, Zara studio campaign film, 35mm film look, fine grain, clean muted cool tones, realistic motion, 24fps",
         "originals",
         0,
         "first",
@@ -874,248 +927,64 @@
       ]
     },
     {
-      "id": 153,
-      "type": "OmnicharCharacterReference",
+      "id": 115,
+      "type": "ResolutionSelector",
       "pos": [
-        -792.0109563211049,
-        5620.603818355664
+        -1480,
+        5610
       ],
       "size": [
         270,
-        98
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "refs",
-          "type": "CHARACTER_REFS",
-          "link": 316
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            320
-          ]
-        },
-        {
-          "name": "role",
-          "type": "STRING",
-          "links": null
-        },
-        {
-          "name": "count",
-          "type": "INT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "a738a684804296e619656655dd231ec1dbd59ac6",
-        "Node name for S&R": "OmnicharCharacterReference"
-      },
-      "widgets_values": [
-        0
-      ]
-    },
-    {
-      "id": 155,
-      "type": "OmnicharCharacterReference",
-      "pos": [
-        -791.2500631318272,
-        5779.038180014846
-      ],
-      "size": [
-        270,
-        98
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "refs",
-          "type": "CHARACTER_REFS",
-          "link": 317
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            321
-          ]
-        },
-        {
-          "name": "role",
-          "type": "STRING",
-          "links": null
-        },
-        {
-          "name": "count",
-          "type": "INT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "a738a684804296e619656655dd231ec1dbd59ac6",
-        "Node name for S&R": "OmnicharCharacterReference"
-      },
-      "widgets_values": [
-        1
-      ]
-    },
-    {
-      "id": 154,
-      "type": "OmnicharCharacterReference",
-      "pos": [
-        -791.7423703119579,
-        5935.702381234786
-      ],
-      "size": [
-        270,
-        98
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "refs",
-          "type": "CHARACTER_REFS",
-          "link": 318
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            322
-          ]
-        },
-        {
-          "name": "role",
-          "type": "STRING",
-          "links": null
-        },
-        {
-          "name": "count",
-          "type": "INT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "a738a684804296e619656655dd231ec1dbd59ac6",
-        "Node name for S&R": "OmnicharCharacterReference"
-      },
-      "widgets_values": [
-        2
-      ]
-    },
-    {
-      "id": 156,
-      "type": "OmnicharCharacterReference",
-      "pos": [
-        -789.3863288070473,
-        6098.148680049934
-      ],
-      "size": [
-        270,
-        98
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "refs",
-          "type": "CHARACTER_REFS",
-          "link": 319
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            323
-          ]
-        },
-        {
-          "name": "role",
-          "type": "STRING",
-          "links": null
-        },
-        {
-          "name": "count",
-          "type": "INT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "a738a684804296e619656655dd231ec1dbd59ac6",
-        "Node name for S&R": "OmnicharCharacterReference"
-      },
-      "widgets_values": [
-        3
-      ]
-    },
-    {
-      "id": 141,
-      "type": "OmnicharLoadCharacter",
-      "pos": [
-        -1134.083892240246,
-        5621.86732026151
-      ],
-      "size": [
-        270,
-        82
+        170
       ],
       "flags": {},
       "order": 8,
       "mode": 0,
+      "showAdvanced": false,
       "inputs": [],
       "outputs": [
         {
-          "name": "char",
-          "type": "CHARACTER",
+          "name": "width",
+          "type": "INT",
           "links": [
-            301
+            276
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            277
           ]
         }
       ],
+      "title": "Resolution Selector (Size)",
       "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "cc0c1e3d5ff91e2a4ec7c5a95341fbca2c7cc8d2",
-        "Node name for S&R": "OmnicharLoadCharacter"
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0",
+        "Node name for S&R": "ResolutionSelector"
       },
       "widgets_values": [
-        "sia.char",
-        ""
-      ]
+        "3:4 (Portrait Standard)",
+        2,
+        32
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 92,
       "type": "SaveVideo",
       "pos": [
-        1150,
-        4880
+        -273.2861466720516,
+        5580.375522201826
       ],
       "size": [
-        1210,
-        1135.142857142857
+        1314,
+        906.6153846153846
       ],
       "flags": {},
-      "order": 22,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1336,65 +1205,41 @@
       "STRING"
     ],
     [
-      316,
+      309,
       152,
       2,
-      153,
+      157,
       0,
       "CHARACTER_REFS"
     ],
     [
-      317,
-      152,
-      2,
-      155,
-      0,
-      "CHARACTER_REFS"
-    ],
-    [
-      318,
-      152,
-      2,
-      154,
-      0,
-      "CHARACTER_REFS"
-    ],
-    [
-      319,
-      152,
-      2,
-      156,
-      0,
-      "CHARACTER_REFS"
-    ],
-    [
-      320,
-      153,
+      310,
+      157,
       0,
       136,
       3,
       "IMAGE"
     ],
     [
-      321,
-      155,
-      0,
+      311,
+      157,
+      1,
       136,
       4,
       "IMAGE"
     ],
     [
-      322,
-      154,
-      0,
+      312,
+      157,
+      2,
       136,
       5,
       "IMAGE"
     ],
     [
-      323,
-      156,
-      0,
+      313,
+      157,
+      3,
       136,
       6,
       "IMAGE"
@@ -1465,10 +1310,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.1,
+      "scale": 0.6024706452438079,
       "offset": [
-        10681.082631778318,
-        -2984.078816926174
+        2500.820611507555,
+        -4599.955394494581
       ]
     },
     "frontendVersion": "1.47.11",

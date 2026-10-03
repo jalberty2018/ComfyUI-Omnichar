@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-omnichar"
-description = "Load Omnichar Studio .char characters in ComfyUI: references, prompt and LoRA."
+description = "Build a .char character once and use it across image and video models in ComfyUI."
 version = "0.1.0"
 readme = "README.md"
 license = { file = "LICENSE" }

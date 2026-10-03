@@ -1,12 +1,14 @@
 # ComfyUI Omnichar Custom Node
 
-Official `.char` integration with ComfyUI.
+Official `.char` integration with ComfyUI. Build a character once, use it across image and
+video models.
 
 <img src="public/image.png" alt="Omnichar nodes in a ComfyUI graph" width="100%">
 
 A `.char` holds a character's reference images, its locked description, and often a trained LoRA.
-Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU, or in
-[Omnichar Cloud](https://cloud.omnichar.org).
+Build one here with Encode Character, or in [Omnichar Studio](https://omnichar.org) on your own GPU
+or [Omnichar Cloud](https://cloud.omnichar.org). The same file then feeds FLUX.2, MiniMax H3 and
+anything else that takes references.
 
 ## Features
 
@@ -94,10 +96,9 @@ a Character References Split node, or a Character Reference node per slot. Edit 
 
 ### Workflows
 
-- [Build a `.char`](workflows/character_encode.json) from four reference images
-- [`.char` with MiniMax H3](workflows/video_minimax_h3_r2v_char.json), reference to video
-- [`.char` with MiniMax H3, split](workflows/video_minimax_h3_r2v_char_split.json), one node for every slot
-- [`.char` with FLUX.2 Klein 9B](workflows/image_flux2_klein_char.json), references as latents
+- [Build a `.char`](workflows/character_encode.json) from face, body and wardrobe references
+- [FLUX.2 Klein 9B](workflows/flux_klein_9b_image_char.json), references as latents, to an image
+- [MiniMax H3](workflows/minimax_h3_char_video.json), references in numbered slots, to a video
 
 ## Python Library
 
