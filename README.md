@@ -1,4 +1,5 @@
-# ComfyUI Omnichar Custom Node(Consistent Portable Characters)
+# ComfyUI Omnichar Custom Node
+### One .char format for consistent portable characters
 
 Official `.char` integration with ComfyUI. Build a character once, use it across image and
 video models. Same face, cloths & body across every model. 
