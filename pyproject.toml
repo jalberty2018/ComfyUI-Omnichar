@@ -11,6 +11,6 @@ dependencies = ["omnichar-sdk>=0.1,<0.2"]
 Repository = "https://github.com/omnichar/ComfyUI-Omnichar"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "omnichar"
 DisplayName = "Omnichar Character (.char)"
-Icon = ""
+Icon = "https://raw.githubusercontent.com/omnichar/ComfyUI-Omnichar/main/public/icon.png"
