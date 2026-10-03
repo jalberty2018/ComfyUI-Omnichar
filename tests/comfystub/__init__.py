@@ -15,6 +15,17 @@ class FakeModel:
         self.model = types.SimpleNamespace(stems=stems)
 
 
+class FakeVae:
+    """Records what it was asked to encode, so a test can check the pixels that reached it."""
+
+    def __init__(self):
+        self.encoded = []
+
+    def encode(self, pixels):
+        self.encoded.append(tuple(pixels.shape))
+        return f"latent{len(self.encoded)}"
+
+
 class FakeClip:
     """Enough of a CLIP to prove the prompt reaches the encoder and conditioning comes back."""
 
@@ -58,6 +69,23 @@ def install(models_dir: Path, unet_stems=(), clip_stems=()):
     folder_paths.get_folder_paths = get_folder_paths
     folder_paths.get_full_path = get_full_path
 
+    # node_helpers.conditioning_set_values, matching ComfyUI's append semantics.
+    node_helpers = types.ModuleType("node_helpers")
+
+    def conditioning_set_values(conditioning, values, append=False):
+        out = []
+        for entry in conditioning:
+            extra = dict(entry[1])
+            for key, value in values.items():
+                if append:
+                    extra[key] = list(extra.get(key, [])) + list(value)
+                else:
+                    extra[key] = value
+            out.append([entry[0], extra])
+        return out
+
+    node_helpers.conditioning_set_values = conditioning_set_values
+
     comfy = types.ModuleType("comfy")
     lora = types.ModuleType("comfy.lora")
     sd = types.ModuleType("comfy.sd")
@@ -83,6 +111,7 @@ def install(models_dir: Path, unet_stems=(), clip_stems=()):
 
     for name, module in {
         "folder_paths": folder_paths,
+        "node_helpers": node_helpers,
         "comfy": comfy,
         "comfy.lora": lora,
         "comfy.sd": sd,

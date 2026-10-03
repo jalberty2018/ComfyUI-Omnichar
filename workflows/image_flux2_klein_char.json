@@ -1,0 +1,158 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 20,
+  "nodes": [
+    {
+      "id": 1, "type": "OmnicharLoadCharacter", "pos": [20, 420], "size": [270, 82],
+      "order": 0, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "char", "type": "CHARACTER", "links": [1] }],
+      "properties": { "Node name for S&R": "OmnicharLoadCharacter" },
+      "widgets_values": ["sia.char", ""]
+    },
+    {
+      "id": 2, "type": "UNETLoader", "pos": [20, 40], "size": [370, 110],
+      "order": 1, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "MODEL", "type": "MODEL", "links": [2] }],
+      "properties": { "Node name for S&R": "UNETLoader" },
+      "widgets_values": ["flux-2-klein-base-9b-fp8.safetensors", "default"]
+    },
+    {
+      "id": 3, "type": "CLIPLoader", "pos": [20, 180], "size": [370, 110],
+      "order": 2, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "CLIP", "type": "CLIP", "links": [3, 4] }],
+      "properties": { "Node name for S&R": "CLIPLoader" },
+      "widgets_values": ["qwen_3_8b_fp8mixed.safetensors", "flux2", "default"]
+    },
+    {
+      "id": 4, "type": "VAELoader", "pos": [20, 300], "size": [370, 80],
+      "order": 3, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "VAE", "type": "VAE", "links": [5, 6, 7] }],
+      "properties": { "Node name for S&R": "VAELoader" },
+      "widgets_values": ["full_encoder_small_decoder.safetensors"]
+    },
+    {
+      "id": 5, "type": "OmnicharDecodeCharacter", "pos": [330, 420], "size": [290, 290],
+      "order": 4, "mode": 0,
+      "inputs": [
+        { "name": "char", "type": "CHARACTER", "link": 1 },
+        { "name": "clip", "shape": 7, "type": "CLIP", "link": 3 }
+      ],
+      "outputs": [
+        { "name": "conditioning", "type": "CONDITIONING", "links": [8] },
+        { "name": "references", "type": "IMAGE", "links": null },
+        { "name": "refs", "type": "CHARACTER_REFS", "links": [9, 10] },
+        { "name": "sheet", "type": "IMAGE", "links": [11] },
+        { "name": "prompt", "type": "STRING", "links": null }
+      ],
+      "properties": { "Node name for S&R": "OmnicharDecodeCharacter" },
+      "widgets_values": ["ordinal", "standing in a rain-lit street at night", "flux2-klein", 0, "first", "pad"]
+    },
+    {
+      "id": 6, "type": "CLIPTextEncode", "pos": [330, 750], "size": [290, 100],
+      "order": 5, "mode": 0,
+      "inputs": [{ "name": "clip", "type": "CLIP", "link": 4 }],
+      "outputs": [{ "name": "CONDITIONING", "type": "CONDITIONING", "links": [12] }],
+      "title": "CLIP Text Encode (Negative)",
+      "properties": { "Node name for S&R": "CLIPTextEncode" },
+      "widgets_values": [""], "color": "#323", "bgcolor": "#535"
+    },
+    {
+      "id": 7, "type": "OmnicharCharacterReferenceLatent", "pos": [660, 420], "size": [300, 90],
+      "order": 6, "mode": 0,
+      "inputs": [
+        { "name": "conditioning", "type": "CONDITIONING", "link": 8 },
+        { "name": "refs", "type": "CHARACTER_REFS", "link": 9 },
+        { "name": "vae", "type": "VAE", "link": 5 }
+      ],
+      "outputs": [{ "name": "conditioning", "type": "CONDITIONING", "links": [13] }],
+      "title": "Character Reference Latent (Positive)",
+      "properties": { "Node name for S&R": "OmnicharCharacterReferenceLatent" },
+      "widgets_values": []
+    },
+    {
+      "id": 8, "type": "OmnicharCharacterReferenceLatent", "pos": [660, 560], "size": [300, 90],
+      "order": 7, "mode": 0,
+      "inputs": [
+        { "name": "conditioning", "type": "CONDITIONING", "link": 12 },
+        { "name": "refs", "type": "CHARACTER_REFS", "link": 10 },
+        { "name": "vae", "type": "VAE", "link": 6 }
+      ],
+      "outputs": [{ "name": "conditioning", "type": "CONDITIONING", "links": [14] }],
+      "title": "Character Reference Latent (Negative)",
+      "properties": { "Node name for S&R": "OmnicharCharacterReferenceLatent" },
+      "widgets_values": []
+    },
+    {
+      "id": 9, "type": "CFGGuider", "pos": [1000, 420], "size": [270, 130],
+      "order": 8, "mode": 0,
+      "inputs": [
+        { "name": "model", "type": "MODEL", "link": 2 },
+        { "name": "positive", "type": "CONDITIONING", "link": 13 },
+        { "name": "negative", "type": "CONDITIONING", "link": 14 }
+      ],
+      "outputs": [{ "name": "GUIDER", "type": "GUIDER", "links": [15] }],
+      "properties": { "Node name for S&R": "CFGGuider" },
+      "widgets_values": [5]
+    },
+    {
+      "id": 10, "type": "RandomNoise", "pos": [1000, 40], "size": [270, 100],
+      "order": 9, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "NOISE", "type": "NOISE", "links": [16] }],
+      "properties": { "Node name for S&R": "RandomNoise" },
+      "widgets_values": [86928255107192, "randomize"]
+    },
+    {
+      "id": 11, "type": "KSamplerSelect", "pos": [1000, 180], "size": [270, 60],
+      "order": 10, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "SAMPLER", "type": "SAMPLER", "links": [17] }],
+      "properties": { "Node name for S&R": "KSamplerSelect" },
+      "widgets_values": ["euler"]
+    },
+    {
+      "id": 12, "type": "Flux2Scheduler", "pos": [1000, 270], "size": [270, 110],
+      "order": 11, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "SIGMAS", "type": "SIGMAS", "links": [18] }],
+      "properties": { "Node name for S&R": "Flux2Scheduler" },
+      "widgets_values": [20, 1024, 1024]
+    },
+    {
+      "id": 13, "type": "EmptyFlux2LatentImage", "pos": [1000, 600], "size": [270, 110],
+      "order": 12, "mode": 0, "inputs": [],
+      "outputs": [{ "name": "LATENT", "type": "LATENT", "links": [19] }],
+      "properties": { "Node name for S&R": "EmptyFlux2LatentImage" },
+      "widgets_values": [1024, 1024, 1]
+    },
+    {
+      "id": 14, "type": "SamplerCustomAdvanced", "pos": [1320, 420], "size": [250, 150],
+      "order": 13, "mode": 0,
+      "inputs": [
+        { "name": "noise", "type": "NOISE", "link": 16 },
+        { "name": "guider", "type": "GUIDER", "link": 15 },
+        { "name": "sampler", "type": "SAMPLER", "link": 17 },
+        { "name": "sigmas", "type": "SIGMAS", "link": 18 },
+        { "name": "latent_image", "type": "LATENT", "link": 19 }
+      ],
+      "outputs": [
+        { "name": "output", "type": "LATENT", "links": [20] },
+        { "name": "denoised_output", "type": "LATENT", "links": null }
+      ],
+      "properties": { "Node name for S&R": "SamplerCustomAdvanced" },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [1, 1, 0, 5, 0, "CHARACTER"], [2, 2, 0, 9, 0, "MODEL"],
+    [3, 3, 0, 5, 1, "CLIP"], [4, 3, 0, 6, 0, "CLIP"],
+    [5, 4, 0, 7, 2, "VAE"], [6, 4, 0, 8, 2, "VAE"],
+    [8, 5, 0, 7, 0, "CONDITIONING"], [9, 5, 2, 7, 1, "CHARACTER_REFS"],
+    [10, 5, 2, 8, 1, "CHARACTER_REFS"], [12, 6, 0, 8, 0, "CONDITIONING"],
+    [13, 7, 0, 9, 1, "CONDITIONING"], [14, 8, 0, 9, 2, "CONDITIONING"],
+    [15, 9, 0, 14, 1, "GUIDER"], [16, 10, 0, 14, 0, "NOISE"],
+    [17, 11, 0, 14, 2, "SAMPLER"], [18, 12, 0, 14, 3, "SIGMAS"],
+    [19, 13, 0, 14, 4, "LATENT"]
+  ],
+  "groups": [
+    { "title": "A character on FLUX.2 Klein 9B", "bounding": [10, 0, 1580, 870], "color": "#3f789e" }
+  ],
+  "config": {}, "extra": {}, "version": 0.4
+}

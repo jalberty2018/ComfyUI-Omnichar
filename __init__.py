@@ -15,6 +15,7 @@ try:
     from .nodes import folders
     from .nodes.decode import OmnicharDecodeCharacter
     from .nodes.encode import OmnicharEncodeCharacter, OmnicharSaveCharacter
+    from .nodes.latent import OmnicharCharacterReferenceLatent
     from .nodes.load import OmnicharLoadCharacter
     from .nodes.lora import OmnicharApplyCharacterLoRA
     from .nodes.pick import OmnicharCharacterReference
@@ -32,6 +33,7 @@ else:
         "OmnicharLoadCharacter": OmnicharLoadCharacter,
         "OmnicharDecodeCharacter": OmnicharDecodeCharacter,
         "OmnicharCharacterReference": OmnicharCharacterReference,
+        "OmnicharCharacterReferenceLatent": OmnicharCharacterReferenceLatent,
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
         "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
         "OmnicharSaveCharacter": OmnicharSaveCharacter,
@@ -41,6 +43,7 @@ else:
         "OmnicharLoadCharacter": "Load Character",
         "OmnicharDecodeCharacter": "Decode Character",
         "OmnicharCharacterReference": "Character Reference",
+        "OmnicharCharacterReferenceLatent": "Character Reference Latent",
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
         "OmnicharEncodeCharacter": "Encode Character",
         "OmnicharSaveCharacter": "Save Character",

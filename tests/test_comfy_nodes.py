@@ -44,7 +44,7 @@ def pack(tmp_path, monkeypatch):
 
 def test_every_node_registers_with_a_display_name(pack):
     module, _ = pack
-    assert len(module.NODE_CLASS_MAPPINGS) == 6
+    assert len(module.NODE_CLASS_MAPPINGS) == 7
     assert set(module.NODE_CLASS_MAPPINGS) == set(module.NODE_DISPLAY_NAME_MAPPINGS)
 
 
@@ -360,3 +360,50 @@ def test_slots_and_prompt_cannot_disagree_about_the_reference_set(pack):
     assert pick.pick(refs, 0)[2] == 1
     with pytest.raises(Exception, match="index 1 does not exist"):
         pick.pick(refs, 1)
+
+
+def test_reference_latents_are_attached_in_one_append(pack):
+    """FLUX.2 takes references as latents on the conditioning, however many there are."""
+    from comfystub import FakeVae
+
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "ordinal")[2]
+    vae = FakeVae()
+
+    base = [["cond", {}]]
+    (out,) = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceLatent"]().attach(
+        base, refs, vae
+    )
+    # Every reference reaches the VAE, at its own size, with alpha dropped.
+    assert len(vae.encoded) == 2
+    assert all(shape[0] == 1 and shape[3] == 3 for shape in vae.encoded)
+    assert out[0][1]["reference_latents"] == ["latent1", "latent2"]
+    # The original conditioning is not mutated, so it can feed another branch.
+    assert base[0][1] == {}
+
+
+def test_attaching_to_conditioning_that_already_has_references_appends(pack):
+    from comfystub import FakeVae
+
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "ordinal")[2]
+
+    (out,) = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceLatent"]().attach(
+        [["cond", {"reference_latents": ["existing"]}]], refs, FakeVae()
+    )
+    assert out[0][1]["reference_latents"] == ["existing", "latent1", "latent2"]
+
+
+def test_attaching_no_references_says_so(pack):
+    from comfystub import FakeVae
+    from omnichar_sdk import CharError
+
+    module, _ = pack
+    with pytest.raises(CharError, match="no references"):
+        module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceLatent"]().attach(
+            [["cond", {}]], [], FakeVae()
+        )

@@ -2,6 +2,8 @@
 
 Official `.char` integration with ComfyUI.
 
+<img src="public/image.png" alt="Omnichar nodes in a ComfyUI graph" width="100%">
+
 A `.char` holds a character's reference images, its locked description, and often a trained LoRA.
 Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU, or in
 [Omnichar Cloud](https://cloud.omnichar.org).
@@ -14,7 +16,7 @@ Characters are built in [Omnichar Studio](https://omnichar.org) on your own GPU,
 - **Conditioning**: Wire a CLIP to get conditioning straight out, or take the prompt as text
 - **Trained LoRA**: Applied to MODEL and CLIP when the character carries one
 - **Build Characters**: Encode face, body and wardrobe references into a new `.char`, three slots each
-- **Python Library**: The reader is a standalone package with no dependencies
+- **Python Library**: Omnichar's standalone package for `.char` integration, no dependencies
 
 ## Requirements
 
@@ -56,15 +58,48 @@ and both read the same files.
 | Load Character | `char`, `char_path` | `char` |
 | Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `refs`, `sheet`, `prompt` |
 | Character Reference | `refs`, `index` | `image`, `role`, `count` |
+| Character Reference Latent | `conditioning`, `refs`, `vae` | `conditioning` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
 | Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
 | Save Character | `char`, `filename`, `overwrite` | `path` |
 
-Ready-made graphs are in [`workflows/`](workflows/).
+## Guide
+
+A character is a few reference images plus a description. Encode Character sorts them by role,
+so face comes first and the prompt numbers follow that order.
+
+<table>
+  <tr>
+    <td align="center"><img src="workflows/images_sia/face.png" width="110"></td>
+    <td align="center"><img src="workflows/images_sia/body.jpg" width="110"></td>
+    <td align="center"><img src="workflows/images_sia/cloth1.jpg" width="110"></td>
+    <td align="center"><img src="workflows/images_sia/cloth2.jpg" width="110"></td>
+  </tr>
+  <tr>
+    <td align="center"><code>face</code></td>
+    <td align="center"><code>body</code></td>
+    <td align="center"><code>cloths</code></td>
+    <td align="center"><code>cloths_2</code></td>
+  </tr>
+</table>
+
+Those four go into Encode Character, which writes `sia.char`. Save Character puts it in
+`ComfyUI/models/characters/`, and Load Character picks it up from there.
+
+Decode Character turns a character into a prompt and a resolved reference list. Models
+that take one batch read `references`. Models with numbered slots, like MiniMax H3, take `refs` into
+a Character Reference node per slot. Edit models that read references as latents, like FLUX.2, take
+`refs` into a Character Reference Latent node on both the positive and the negative conditioning.
+
+### Workflows
+
+- [Build a `.char`](workflows/character_encode.json) from four reference images
+- [`.char` with MiniMax H3](workflows/video_minimax_h3_r2v_char.json), reference to video
+- [`.char` with FLUX.2 Klein 9B](workflows/image_flux2_klein_char.json), references as latents
 
 ## Python Library
 
-The reader is a standalone package. Install it anywhere, not just in ComfyUI:
+Omnichar's standalone package for `.char` integration. Install it anywhere, not only in ComfyUI:
 
 ```bash
 pip install omnichar-sdk
