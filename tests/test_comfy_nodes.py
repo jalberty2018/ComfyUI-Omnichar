@@ -44,7 +44,7 @@ def pack(tmp_path, monkeypatch):
 
 def test_every_node_registers_with_a_display_name(pack):
     module, _ = pack
-    assert len(module.NODE_CLASS_MAPPINGS) == 7
+    assert len(module.NODE_CLASS_MAPPINGS) == 8
     assert set(module.NODE_CLASS_MAPPINGS) == set(module.NODE_DISPLAY_NAME_MAPPINGS)
 
 
@@ -407,3 +407,32 @@ def test_attaching_no_references_says_so(pack):
         module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferenceLatent"]().attach(
             [["cond", {}]], [], FakeVae()
         )
+
+
+def test_references_split_puts_each_reference_on_its_own_output(pack):
+    """One node per model, rather than one Character Reference node per slot."""
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "token")[2]
+
+    out = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferencesSplit"]().split(refs)
+    images, count = out[:-1], out[-1]
+    assert count == 2
+    assert images[0] is not None and images[1] is not None
+    # Ada has two references, so the remaining slots are empty rather than padded with a blank.
+    assert images[2] is images[3] is images[4] is None
+
+
+def test_split_matches_picking_each_position_one_at_a_time(pack):
+    import torch
+
+    module, _ = pack
+    loader = module.NODE_CLASS_MAPPINGS["OmnicharLoadCharacter"]()
+    (char,) = loader.load("Ada.char")
+    refs = module.NODE_CLASS_MAPPINGS["OmnicharDecodeCharacter"]().decode(char, "token")[2]
+
+    split = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReferencesSplit"]().split(refs)
+    pick = module.NODE_CLASS_MAPPINGS["OmnicharCharacterReference"]()
+    for i in range(2):
+        assert torch.equal(split[i], pick.pick(refs, i)[0])

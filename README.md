@@ -58,6 +58,7 @@ and both read the same files.
 | Load Character | `char`, `char_path` | `char` |
 | Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `refs`, `sheet`, `prompt` |
 | Character Reference | `refs`, `index` | `image`, `role`, `count` |
+| Character References Split | `refs` | `image_0` to `image_4`, `count` |
 | Character Reference Latent | `conditioning`, `refs`, `vae` | `conditioning` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
 | Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
@@ -88,13 +89,14 @@ Those four go into Encode Character, which writes `sia.char`. Save Character put
 
 Decode Character turns a character into a prompt and a resolved reference list. Models
 that take one batch read `references`. Models with numbered slots, like MiniMax H3, take `refs` into
-a Character Reference node per slot. Edit models that read references as latents, like FLUX.2, take
+a Character References Split node, or a Character Reference node per slot. Edit models that read references as latents, like FLUX.2, take
 `refs` into a Character Reference Latent node on both the positive and the negative conditioning.
 
 ### Workflows
 
 - [Build a `.char`](workflows/character_encode.json) from four reference images
 - [`.char` with MiniMax H3](workflows/video_minimax_h3_r2v_char.json), reference to video
+- [`.char` with MiniMax H3, split](workflows/video_minimax_h3_r2v_char_split.json), one node for every slot
 - [`.char` with FLUX.2 Klein 9B](workflows/image_flux2_klein_char.json), references as latents
 
 ## Python Library

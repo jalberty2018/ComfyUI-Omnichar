@@ -19,6 +19,7 @@ try:
     from .nodes.load import OmnicharLoadCharacter
     from .nodes.lora import OmnicharApplyCharacterLoRA
     from .nodes.pick import OmnicharCharacterReference
+    from .nodes.split import OmnicharCharacterReferencesSplit
 except ImportError as error:
     logger.error(
         "Omnichar character nodes are not loaded: %s\n"
@@ -34,6 +35,7 @@ else:
         "OmnicharDecodeCharacter": OmnicharDecodeCharacter,
         "OmnicharCharacterReference": OmnicharCharacterReference,
         "OmnicharCharacterReferenceLatent": OmnicharCharacterReferenceLatent,
+        "OmnicharCharacterReferencesSplit": OmnicharCharacterReferencesSplit,
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
         "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
         "OmnicharSaveCharacter": OmnicharSaveCharacter,
@@ -44,6 +46,7 @@ else:
         "OmnicharDecodeCharacter": "Decode Character",
         "OmnicharCharacterReference": "Character Reference",
         "OmnicharCharacterReferenceLatent": "Character Reference Latent",
+        "OmnicharCharacterReferencesSplit": "Character References Split",
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
         "OmnicharEncodeCharacter": "Encode Character",
         "OmnicharSaveCharacter": "Save Character",
