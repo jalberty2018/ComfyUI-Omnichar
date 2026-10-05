@@ -60,6 +60,7 @@ and both read the same files.
 | Node | Inputs | Outputs |
 | --- | --- | --- |
 | Load Character | `char`, `char_path` | `char` |
+| Load Character (Upload) | browser upload | `char` |
 | Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `refs`, `sheet`, `prompt` |
 | Character Reference | `refs`, `index` | `image`, `role`, `count` |
 | Character References Split | `refs` | `image_0` to `image_4`, `count` |
@@ -67,6 +68,27 @@ and both read the same files.
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
 | Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
 | Save Character | `char`, `filename`, `overwrite` | `path` |
+| Save Character (Download) | `char`, `filename` | `filename`, browser download |
+
+### Browser upload and download
+
+Add **Load Character (Upload)** and click **choose file to upload**. Select a `.char`
+file using your browser's file picker, just like Load Image. Once the upload finishes,
+connect its `char` output to Decode Character or another character node and run.
+The uploaded file is retained in ComfyUI's input folder so saved workflows can reuse it.
+
+Connect **Encode Character** to **Save Character (Download)**, enter a filename,
+and run the workflow. Then click **download character** to download the complete
+`.char` file to your own computer. `.char` is added if missing. Your browser controls
+the destination folder; enable its "Ask where to save each file" setting to choose
+a folder on every download. Downloads are staged in ComfyUI's temporary folder;
+if a download expires after cleanup/restart, run the workflow again.
+
+This also works when ComfyUI runs on a remote server. Uploads respect ComfyUI's
+configured maximum upload size. The original Load Character and Save Character
+nodes continue to use registered server folders. Restart ComfyUI and refresh the
+browser after updating. If you added the earlier External nodes, remove and re-add
+them to refresh their widgets.
 
 ## Guide
 

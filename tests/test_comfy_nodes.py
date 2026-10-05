@@ -44,7 +44,7 @@ def pack(tmp_path, monkeypatch):
 
 def test_every_node_registers_with_a_display_name(pack):
     module, _ = pack
-    assert len(module.NODE_CLASS_MAPPINGS) == 8
+    assert len(module.NODE_CLASS_MAPPINGS) == 10
     assert set(module.NODE_CLASS_MAPPINGS) == set(module.NODE_DISPLAY_NAME_MAPPINGS)
 
 

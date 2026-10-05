@@ -15,6 +15,7 @@ try:
     from .nodes import folders
     from .nodes.decode import OmnicharDecodeCharacter
     from .nodes.encode import OmnicharEncodeCharacter, OmnicharSaveCharacter
+    from .nodes.external import OmnicharLoadCharacterExternal, OmnicharSaveCharacterExternal
     from .nodes.latent import OmnicharCharacterReferenceLatent
     from .nodes.load import OmnicharLoadCharacter
     from .nodes.lora import OmnicharApplyCharacterLoRA
@@ -29,6 +30,14 @@ except ImportError as error:
     )
 else:
     folders.register()
+    try:
+        from server import PromptServer
+    except ImportError:
+        pass  # Node tests can run without the ComfyUI server.
+    else:
+        from .nodes.external import register_routes
+
+        register_routes(PromptServer.instance.routes)
 
     NODE_CLASS_MAPPINGS = {
         "OmnicharLoadCharacter": OmnicharLoadCharacter,
@@ -39,6 +48,8 @@ else:
         "OmnicharApplyCharacterLoRA": OmnicharApplyCharacterLoRA,
         "OmnicharEncodeCharacter": OmnicharEncodeCharacter,
         "OmnicharSaveCharacter": OmnicharSaveCharacter,
+        "OmnicharLoadCharacterExternal": OmnicharLoadCharacterExternal,
+        "OmnicharSaveCharacterExternal": OmnicharSaveCharacterExternal,
     }
 
     NODE_DISPLAY_NAME_MAPPINGS = {
@@ -50,4 +61,6 @@ else:
         "OmnicharApplyCharacterLoRA": "Apply Character LoRA",
         "OmnicharEncodeCharacter": "Encode Character",
         "OmnicharSaveCharacter": "Save Character",
+        "OmnicharLoadCharacterExternal": "Load Character (Upload)",
+        "OmnicharSaveCharacterExternal": "Save Character (Download)",
     }
