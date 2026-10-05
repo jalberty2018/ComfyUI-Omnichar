@@ -45,6 +45,28 @@ def client_for(external, limit=1024 * 1024):
     return TestClient(TestServer(app))
 
 
+@pytest.mark.parametrize("name,expected", [("Ada", "Ada.char"), ("Ada.char", "Ada.char"), ("../Ada", "Ada.char")])
+def test_encode_filename_connects_directly_to_download(external, monkeypatch, name, expected):
+    from PIL import Image
+
+    common = sys.modules["external_test_nodes.common"]
+    monkeypatch.setattr(common, "from_image", lambda images: images, raising=False)
+    monkeypatch.setitem(sys.modules, "external_test_nodes.folders", types.ModuleType("external_test_nodes.folders"))
+    spec = importlib.util.spec_from_file_location(
+        "external_test_nodes.encode", Path(__file__).resolve().parents[1] / "nodes/encode.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    node = module.OmnicharEncodeCharacter()
+    assert node.RETURN_TYPES == ("CHARACTER", "STRING")
+    assert node.RETURN_NAMES == ("char", "filename")
+    char, filename = node.encode(name, "A character", 64, face=[Image.new("RGB", (64, 64))])
+    assert filename == expected
+    assert char.name == name
+    saved = external.OmnicharSaveCharacterExternal().save(char, filename)
+    assert saved["result"] == (expected,)
+
+
 async def upload(client, data, filename="Ada.char"):
     form = FormData()
     form.add_field("file", data, filename=filename, content_type="application/octet-stream")

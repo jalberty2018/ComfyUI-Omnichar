@@ -178,10 +178,11 @@ def test_encode_character_round_trips_through_save_and_load(pack, tmp_path):
     face = torch.rand(1, 96, 64, 3)
     body = torch.rand(2, 72, 128, 3)
 
-    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+    char, filename = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
         "Bo", "A tall man with a shaved head.", 512, face=face, body=body
     )
     assert char.name == "Bo"
+    assert filename == "Bo.char"
     assert [r.role for r in char.get_references()] == ["face", "body", "body"]
     # Compiled for both reference archs, so it applies without a rebuild.
     assert char.get_info().ref_archs == ["flux2-klein", "minimax-h3"]
@@ -264,7 +265,7 @@ def test_encode_takes_several_images_per_role(pack):
     import torch
 
     module, _ = pack
-    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+    char, filename = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
         "Bo",
         "A tall man.",
         512,
@@ -282,7 +283,7 @@ def test_a_batch_in_one_slot_still_counts_as_several_references(pack):
     import torch
 
     module, _ = pack
-    (char,) = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
+    char, filename = module.NODE_CLASS_MAPPINGS["OmnicharEncodeCharacter"]().encode(
         "Bo", "A tall man.", 512, face=torch.rand(4, 96, 64, 3)
     )
     assert [r.role for r in char.get_references()] == ["face"] * 4

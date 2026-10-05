@@ -79,8 +79,8 @@ class OmnicharEncodeCharacter:
             "optional": _role_inputs(),
         }
 
-    RETURN_TYPES = ("CHARACTER",)
-    RETURN_NAMES = ("char",)
+    RETURN_TYPES = ("CHARACTER", "STRING")
+    RETURN_NAMES = ("char", "filename")
     FUNCTION = "encode"
     CATEGORY = CATEGORY
     DESCRIPTION = (
@@ -107,7 +107,8 @@ class OmnicharEncodeCharacter:
             archs=(FLUX2_KLEIN_ARCH, MINIMAX_H3_ARCH),
             resolution=resolution or None,
         )
-        return (Character.from_bytes(_to_bytes(doc), f"{name}.char"),)
+        filename = safe_output_name(name, ".char")
+        return (Character.from_bytes(_to_bytes(doc), filename), filename)
 
 
 def _to_bytes(doc) -> bytes:

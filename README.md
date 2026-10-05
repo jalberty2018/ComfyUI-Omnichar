@@ -66,7 +66,7 @@ and both read the same files.
 | Character References Split | `refs` | `image_0` to `image_4`, `count` |
 | Character Reference Latent | `conditioning`, `refs`, `vae` | `conditioning` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
-| Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char` |
+| Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char`, `filename` |
 | Save Character | `char`, `filename`, `overwrite` | `path` |
 | Save Character (Download) | `char`, `filename` | `filename`, browser download |
 
@@ -83,6 +83,11 @@ and run the workflow. Then click **download character** to download the complete
 the destination folder; enable its "Ask where to save each file" setting to choose
 a folder on every download. Downloads are staged in ComfyUI's temporary folder;
 if a download expires after cleanup/restart, run the workflow again.
+
+Encode Character also outputs `filename`, derived from `name` with a `.char`
+extension (for example, `Ada` becomes `Ada.char`). Connect it to the save node's
+`filename` input to reuse the character name automatically. Convert that widget
+to an input if needed. Filenames use the same sanitization as Save Character.
 
 This also works when ComfyUI runs on a remote server. Uploads respect ComfyUI's
 configured maximum upload size. The original Load Character and Save Character
