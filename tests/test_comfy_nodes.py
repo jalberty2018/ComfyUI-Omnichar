@@ -422,7 +422,8 @@ def test_references_split_puts_each_reference_on_its_own_output(pack):
     assert count == 2
     assert images[0] is not None and images[1] is not None
     # Ada has two references, so the remaining slots are empty rather than padded with a blank.
-    assert images[2] is images[3] is images[4] is None
+    assert len(images) == 9
+    assert all(image is None for image in images[2:])
 
 
 def test_split_matches_picking_each_position_one_at_a_time(pack):

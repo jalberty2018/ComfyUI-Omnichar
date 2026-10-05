@@ -7,10 +7,8 @@ from omnichar_sdk import CharChanged
 
 from .common import CATEGORY, REFS_INPUT, fail_on_change, to_image
 
-#: Matches MiniMax H3's ref_image_0 through ref_image_4, which is the widest slot set in use.
-#: A ComfyUI node cannot grow outputs to fit its input, so this is fixed and the spare ones stay
-#: unwired. Use Character Reference for a model with more slots than this.
-SLOTS = 5
+#: Nine reference outputs, with unused slots left empty.
+SLOTS = 9
 
 
 class OmnicharCharacterReferencesSplit:

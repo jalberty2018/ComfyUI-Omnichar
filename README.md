@@ -63,7 +63,7 @@ and both read the same files.
 | Load Character (Upload) | browser upload | `char` |
 | Decode Character | `char`, `style`, `clip`, `prompt`, `arch`, `max_references`, `size_from`, `fit` | `conditioning`, `references`, `refs`, `sheet`, `prompt` |
 | Character Reference | `refs`, `index` | `image`, `role`, `count` |
-| Character References Split | `refs` | `image_0` to `image_4`, `count` |
+| Character References Split | `refs` | `image_0` to `image_8`, `count` |
 | Character Reference Latent | `conditioning`, `refs`, `vae` | `conditioning` |
 | Apply Character LoRA | `model`, `clip`, `char`, `strength`, `arch`, `min_key_coverage` | `model`, `clip` |
 | Encode Character | `name`, `description`, `resolution`, `face`/`body`/`cloths` (3 slots each) | `char`, `filename` |
