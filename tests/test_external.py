@@ -51,6 +51,10 @@ def test_encode_filename_connects_directly_to_download(external, monkeypatch, na
 
     common = sys.modules["external_test_nodes.common"]
     monkeypatch.setattr(common, "from_image", lambda images: images, raising=False)
+    def unexpected_audio(*args):
+        raise AssertionError("Encoding without voice must not convert audio")
+
+    monkeypatch.setattr(common, "audio_to_voice", unexpected_audio, raising=False)
     monkeypatch.setitem(sys.modules, "external_test_nodes.folders", types.ModuleType("external_test_nodes.folders"))
     spec = importlib.util.spec_from_file_location(
         "external_test_nodes.encode", Path(__file__).resolve().parents[1] / "nodes/encode.py"
