@@ -122,7 +122,8 @@ expect a likeness rather than a copy.
 - [Build a `.char`](workflows/character_encode.json) from face, body and wardrobe references
 - [FLUX.2 Klein 9B](workflows/flux_klein_9b_image_char.json), references as latents, to an image
 - [MiniMax H3](workflows/minimax_h3_char_video.json), references in numbered slots, to a video
-- [MiniMax H3 with voice](workflows/minimax_h3_char_voice_video.json), the character's voice wired into `ref_audio_0`, to a talking video
+- [Build a `.char` with a voice](workflows/voice/encode_char_with_voice.json), a face reference plus a voice clip from Load Audio
+- [MiniMax H3 with voice](workflows/voice/generate_with_voice_minimaxh3.json), the character's voice wired into `ref_audio_0`, to a talking video
 
 ## Python Library
 

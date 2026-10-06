@@ -467,7 +467,7 @@
         "Node name for S&R": "RandomNoise"
       },
       "widgets_values": [
-        380678174413248,
+        177372132319182,
         "randomize"
       ]
     },
@@ -531,7 +531,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -577,42 +577,6 @@
       ]
     },
     {
-      "id": 132,
-      "type": "PrimitiveFloat",
-      "pos": [
-        -1480,
-        5830
-      ],
-      "size": [
-        270,
-        70
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "FLOAT",
-          "type": "FLOAT",
-          "links": [
-            261
-          ]
-        }
-      ],
-      "title": "Float (Duration)",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.30.0",
-        "Node name for S&R": "PrimitiveFloat"
-      },
-      "widgets_values": [
-        5
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 136,
       "type": "MiniMaxH3ReferenceToVideo",
       "pos": [
@@ -621,7 +585,7 @@
       ],
       "size": [
         410,
-        404
+        424
       ],
       "flags": {},
       "order": 13,
@@ -699,6 +663,13 @@
           "link": 314
         },
         {
+          "label": "ref_audio_1",
+          "name": "ref_audios.ref_audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
           "name": "prompt",
           "type": "STRING",
           "widget": {
@@ -750,40 +721,6 @@
         768,
         124,
         "match"
-      ]
-    },
-    {
-      "id": 141,
-      "type": "OmnicharLoadCharacter",
-      "pos": [
-        -1134.083892240246,
-        5621.86732026151
-      ],
-      "size": [
-        270,
-        82
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "char",
-          "type": "CHARACTER",
-          "links": [
-            301
-          ]
-        }
-      ],
-      "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
-        "ver": "cc0c1e3d5ff91e2a4ec7c5a95341fbca2c7cc8d2",
-        "Node name for S&R": "OmnicharLoadCharacter"
-      },
-      "widgets_values": [
-        "sia.char",
-        ""
       ]
     },
     {
@@ -848,11 +785,50 @@
         }
       ],
       "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "cnr_id": "comfyui-omnichar",
         "ver": "1fb2bd0e80a0378deea0e723c28261d6e25ee604",
-        "Node name for S&R": "OmnicharCharacterReferencesSplit"
+        "Node name for S&R": "OmnicharCharacterReferencesSplit",
+        "aux_id": "omnichar/ComfyUI-Omnichar"
       },
       "widgets_values": []
+    },
+    {
+      "id": 92,
+      "type": "SaveVideo",
+      "pos": [
+        -273.2861466720516,
+        5580.375522201826
+      ],
+      "size": [
+        1314,
+        106
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 260
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.30.0"
+      },
+      "widgets_values": [
+        "video/MiniMax_H3",
+        "auto",
+        "auto"
+      ]
     },
     {
       "id": 152,
@@ -863,10 +839,10 @@
       ],
       "size": [
         266.146617230571,
-        288
+        356
       ],
       "flags": {},
-      "order": 11,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -920,19 +896,55 @@
         }
       ],
       "properties": {
-        "aux_id": "omnichar/ComfyUI-Omnichar",
+        "cnr_id": "comfyui-omnichar",
         "ver": "59feb34cba6b26734cfdcb9a22af68f7301e2618",
-        "Node name for S&R": "OmnicharDecodeCharacter"
+        "Node name for S&R": "OmnicharDecodeCharacter",
+        "aux_id": "omnichar/ComfyUI-Omnichar"
       },
       "widgets_values": [
         "token",
-        "sia sitting on the studio floor facing the camera at a slight angle, both knees raised together with feet flat on the floor, both forearms resting across the knees with one hand loosely holding the other wrist, she holds the pose with a calm direct gaze into the lens, slowly tilts her head a little further to one side, blinks softly, fingers shift slightly on her wrist, subtle natural breathing, lips closed, silent posing with no speaking, body stays seated in the same position throughout, plain light grey seamless studio backdrop, bright neutral daylight from the upper left, crisp clean sunlight with soft-edged shadows falling across the floor and wall, airy high-key exposure, cool neutral white balance, soft grey shadows, static locked-off camera at eye level, full body shot with feet fully in frame, 35mm lens at f/11, deep focus with the whole frame sharp from the feet to the backdrop, slow smooth controlled movement, Zara studio campaign film, 35mm film look, fine grain, clean muted cool tones, realistic motion, 24fps",
+        "chris giving an interview & says \"Time can bend. Dreams can fold. But a character's voice should never change. With OmniChar, it doesn't. Consistent voice is here.\"",
         "originals",
         0,
         "first",
         "pad",
         "auto",
         1
+      ]
+    },
+    {
+      "id": 141,
+      "type": "OmnicharLoadCharacter",
+      "pos": [
+        -1134.083892240246,
+        5621.86732026151
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "char",
+          "type": "CHARACTER",
+          "links": [
+            301
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-omnichar",
+        "ver": "cc0c1e3d5ff91e2a4ec7c5a95341fbca2c7cc8d2",
+        "Node name for S&R": "OmnicharLoadCharacter",
+        "aux_id": "omnichar/ComfyUI-Omnichar"
+      },
+      "widgets_values": [
+        "chris.char",
+        ""
       ]
     },
     {
@@ -947,7 +959,7 @@
         170
       ],
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "showAdvanced": false,
       "inputs": [],
@@ -974,7 +986,7 @@
         "Node name for S&R": "ResolutionSelector"
       },
       "widgets_values": [
-        "3:4 (Portrait Standard)",
+        "16:9 (Widescreen)",
         2,
         32
       ],
@@ -982,42 +994,40 @@
       "bgcolor": "#533"
     },
     {
-      "id": 92,
-      "type": "SaveVideo",
+      "id": 132,
+      "type": "PrimitiveFloat",
       "pos": [
-        -273.2861466720516,
-        5580.375522201826
+        -1480,
+        5830
       ],
       "size": [
-        1314,
-        906.6153846153846
+        270,
+        70
       ],
       "flags": {},
-      "order": 19,
+      "order": 8,
       "mode": 0,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 260
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "name": "video",
-          "type": "VIDEO",
-          "links": null
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            261
+          ]
         }
       ],
+      "title": "Float (Duration)",
       "properties": {
         "cnr_id": "comfy-core",
-        "ver": "0.30.0"
+        "ver": "0.30.0",
+        "Node name for S&R": "PrimitiveFloat"
       },
       "widgets_values": [
-        "video/MiniMax_H3",
-        "auto",
-        "auto"
-      ]
+        10
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     }
   ],
   "links": [
@@ -1162,7 +1172,7 @@
       131,
       1,
       136,
-      13,
+      14,
       "INT"
     ],
     [
@@ -1170,7 +1180,7 @@
       115,
       0,
       136,
-      12,
+      13,
       "INT"
     ],
     [
@@ -1210,7 +1220,7 @@
       152,
       4,
       136,
-      11,
+      12,
       "STRING"
     ],
     [
@@ -1327,10 +1337,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.6024706452438079,
+      "scale": 0.7899405540660521,
       "offset": [
-        2500.820611507555,
-        -4599.955394494581
+        1502.6241199727979,
+        -4892.507404009684
       ]
     },
     "frontendVersion": "1.47.11",
