@@ -44,6 +44,7 @@ app.registerExtension({
               uploadId.value = uploaded.upload_id;
               filename.callback?.(filename.value);
               uploadId.callback?.(uploadId.value);
+              this.omnicharRefreshPreview();
             } catch (error) {
               alert(`Character upload failed: ${error.message}`);
             } finally {
@@ -54,6 +55,36 @@ app.registerExtension({
           };
           input.click();
         }, { serialize: false });
+        let previewImage = null;
+        let previewRequest = 0;
+        this.addCustomWidget({
+          name: "character_preview",
+          type: "omnichar_preview",
+          options: { serialize: false },
+          computeSize: () => [0, previewImage ? 228 : 0],
+          draw: (ctx, node, width, y) => {
+            if (!previewImage) return;
+            const scale = Math.min((width - 20) / previewImage.width, 216 / previewImage.height);
+            const w = previewImage.width * scale;
+            const h = previewImage.height * scale;
+            ctx.drawImage(previewImage, (width - w) / 2, y + 4, w, h);
+          },
+        });
+        this.omnicharRefreshPreview = () => {
+          const request = ++previewRequest;
+          previewImage = null;
+          this.setSize(this.computeSize());
+          this.setDirtyCanvas(true, true);
+          if (!filename.value || !uploadId.value) return;
+          const image = new Image();
+          image.onload = () => {
+            if (request !== previewRequest) return;
+            previewImage = image;
+            this.setSize(this.computeSize());
+            this.setDirtyCanvas(true, true);
+          };
+          image.src = api.apiURL(`/omnichar/preview/${encodeURIComponent(uploadId.value)}/${encodeURIComponent(filename.value)}`);
+        };
       } else {
         this.omnicharDownloadButton = this.addWidget(
           "button", "run workflow to prepare download", null, async () => {
@@ -82,6 +113,15 @@ app.registerExtension({
       this.setSize(this.computeSize());
       return result;
     };
+
+    if (upload) {
+      const onConfigure = nodeType.prototype.onConfigure;
+      nodeType.prototype.onConfigure = function () {
+        const result = onConfigure?.apply(this, arguments);
+        this.omnicharRefreshPreview?.();
+        return result;
+      };
+    }
 
     if (download) {
       const onExecuted = nodeType.prototype.onExecuted;

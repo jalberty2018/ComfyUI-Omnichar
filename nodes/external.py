@@ -2,6 +2,7 @@
 """Character upload/download nodes and their browser transfer routes."""
 
 import asyncio
+import io
 import re
 import uuid
 from pathlib import Path
@@ -105,6 +106,27 @@ class OmnicharSaveCharacterExternal:
 
 def register_routes(routes):
     from aiohttp import web
+
+    @routes.get("/omnichar/preview/{token}/{filename}")
+    async def preview(request):
+        def render():
+            from PIL import Image
+
+            target = stored_path(upload_root(), request.match_info["token"], request.match_info["filename"])
+            refs = Character.open(target).get_references()
+            if not refs:
+                raise CharError("This character has no reference images.")
+            with refs[0].open() as image:
+                image.thumbnail((512, 512), Image.Resampling.LANCZOS)
+                buffer = io.BytesIO()
+                image.save(buffer, format="PNG")
+                return buffer.getvalue()
+
+        try:
+            data = await asyncio.to_thread(render)
+        except (CharError, OSError, ValueError) as error:
+            raise web.HTTPNotFound(text=str(error)) from error
+        return web.Response(body=data, content_type="image/png", headers={"Cache-Control": "no-store"})
 
     @routes.post("/omnichar/upload")
     async def upload(request):

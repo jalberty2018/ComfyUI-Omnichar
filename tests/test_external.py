@@ -2,6 +2,7 @@
 
 import asyncio
 import importlib.util
+import io
 import math
 import sys
 import types
@@ -89,6 +90,15 @@ def test_upload_load_save_download_preserves_entire_archive(external):
             char, = loader.load(**uploaded)
             assert char.name == "Ada"
             assert char.to_bytes() == data
+            preview = await client.get(f"/omnichar/preview/{uploaded['upload_id']}/{uploaded['filename']}")
+            assert preview.status == 200
+            assert preview.content_type == "image/png"
+            from PIL import Image
+            with Image.open(io.BytesIO(await preview.read())) as actual:
+                expected = char.get_references()[0].open()
+                expected.thumbnail((512, 512), Image.Resampling.LANCZOS)
+                assert actual.size == expected.size
+                assert actual.tobytes() == expected.tobytes()
             saver = external.OmnicharSaveCharacterExternal()
             saved = saver.save(char, "exported")
             item, = saved["ui"]["omnichar_download"]
@@ -152,4 +162,22 @@ def test_missing_upload_and_download(external):
     async def run():
         async with client_for(external) as client:
             assert (await client.get('/omnichar/download/invalid/missing.char')).status == 404
+            assert (await client.get('/omnichar/preview/invalid/missing.char')).status == 404
+            assert (await client.get(f"/omnichar/preview/{'a' * 32}/missing.char")).status == 404
+    asyncio.run(run())
+
+
+def test_preview_without_references(external, tmp_path):
+    from conftest import build
+
+    data = build(tmp_path, {}).read_bytes()
+
+    async def run():
+        async with client_for(external) as client:
+            response = await upload(client, data)
+            assert response.status == 200
+            item = await response.json()
+            response = await client.get(f"/omnichar/preview/{item['upload_id']}/{item['filename']}")
+            assert response.status == 404
+            assert external.OmnicharLoadCharacterExternal.VALIDATE_INPUTS(**item) is True
     asyncio.run(run())
